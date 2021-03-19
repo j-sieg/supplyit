@@ -2,11 +2,13 @@ require "test_helper"
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @added_category = categories(:cement).id
     @product = products(:aggregate)
     @product_params = {
       location: @product.location,
       name: @product.name,
-      price: @product.price
+      price: @product.price,
+      category_ids: [@added_category.id]
     }
   end
 
@@ -25,7 +27,10 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       post products_url, params: { product: @product_params }
     end
 
-    assert_redirected_to product_url(Product.last)
+    new_product = Product.last
+
+    assert new_product.category_ids.include?(@added_category.id)
+    assert_redirected_to product_url(new_product)
   end
 
   test "should show product" do
@@ -39,7 +44,9 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update product" do
-    patch product_url(@product), params: { product: @product_params }
+    patch product_url(@product), params: { product: @product_params.merge({ category_ids: []}) }
+
+    assert_equal @product.category_ids, []
     assert_redirected_to product_url(@product)
   end
 
