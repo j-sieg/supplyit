@@ -2,7 +2,7 @@ require "test_helper"
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @added_category = categories(:cement).id
+    @added_category = categories(:cement)
     @product = products(:aggregate)
     @product_params = {
       location: @product.location,
