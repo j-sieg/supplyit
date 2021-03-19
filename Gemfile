@@ -13,7 +13,6 @@ gem 'figaro'
 # JS and assets
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
-gem 'jbuilder', '~> 2.7'
 
 # DB and Server
 gem 'pg', '~> 1.1'
