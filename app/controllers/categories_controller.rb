@@ -3,16 +3,13 @@ class CategoriesController < ApplicationController
 
   # GET /categories
   def index
-    @categories = Category.all
+    category = Category.new
+    categories = Category.all
+    render locals: { category: category, categories: categories }
   end
 
   # GET /categories/1
   def show
-  end
-
-  # GET /categories/new
-  def new
-    @category = Category.new
   end
 
   # GET /categories/1/edit
@@ -24,7 +21,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to @category, notice: 'Category was successfully created.'
+      redirect_to categories_url, notice: 'Category was successfully created.'
     else
       render :new
     end

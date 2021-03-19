@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#index'
 
-  resources :categories
+  resources :categories, except: %i[new]
   resources :products
 end
