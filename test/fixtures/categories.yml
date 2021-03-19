@@ -1,0 +1,12 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+DEFAULTS: &DEFAULTS
+  name: $LABEL
+
+aggregates:
+  <<: *DEFAULTS
+
+cement:
+  <<: *DEFAULTS
+
+hollow_blocks:
+  name: 'Hollow Blocks'
