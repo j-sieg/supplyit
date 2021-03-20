@@ -18,7 +18,7 @@ module Sellers
       if @product.save
         redirect_to @product, notice: 'Product was successfully created.'
       else
-        render 'products/new'
+        render :new
       end
     end
 
