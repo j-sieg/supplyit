@@ -1,24 +1,34 @@
-# README
+# DO NOT README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup Instructions
+*Before anything else **you must have ruby version 2.7.1 and yarn** installed.* Then run:
+```bash
+bundle install
+```
 
-Things you may want to cover:
+### Database Setup
+*You must have a postgresql database running. **This app depends on it**.*
 
-* Ruby version
+- Create a file named `application.yml` in the `app/config/` folder
+```bash
+touch config/application.yml
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- The contents of the YAML file should be
+```
+development:
+  DATABASE_URL: <just_your_postgres_connection_string>
+```
+Repeat this for any environment you wish to run the application in. The default is the development environment.
+### To actually run the application:
+```bash
+  ./bin/rails server
+```
+- If that doesn't work then:
+```bash
+  bundle exec rails server
+```
+- Or simply
+```bash
+  rails server
+```
