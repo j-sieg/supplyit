@@ -1,1 +1,5 @@
 <h1 style='text-align:center;'> SupplyIt! </h1>
+
+<% if seller_signed_in? %>
+  <%= button_to 'Seller Logout', destroy_seller_session_path, method: :delete %>
+<% end %>
