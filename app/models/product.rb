@@ -4,4 +4,5 @@ class Product < ApplicationRecord
   belongs_to :seller
   has_many :category_products, dependent: :destroy
   has_many :categories, through: :category_products
+  has_many :line_items, dependent: :destroy
 end
