@@ -1,4 +1,6 @@
 class LineItemsController < ApplicationController
+  include CurrentCart
+
   def create
   end
 

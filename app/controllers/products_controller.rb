@@ -4,7 +4,8 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = Product.all
+    products = Product.all
+    render locals: { products: products }
   end
 
   # GET /products/1
