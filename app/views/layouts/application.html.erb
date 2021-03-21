@@ -11,9 +11,18 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
+    <%= render 'shared/navbar' %>
     <main class='container-fluid'>
-      <%= yield %>
+      <% if display_cart? %>
+        <div class='row'>
+          <%= render 'shared/cart' %>
+          <section class='col-lg-10 border border-dark'>
+            <%= yield %>
+          </section>
+        </div>
+      <% else %>
+        <%= yield %>
+      <% end %>
     </main>
   </body>
 </html>
