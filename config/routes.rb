@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'line_items/create'
+  get 'line_items/update'
+  get 'line_items/destroy'
   root 'pages#index'
 
   devise_for :sellers
@@ -12,4 +15,5 @@ Rails.application.routes.draw do
 
   resources :carts, only: %i[destroy]
   resources :products, only: %i[index show]
+  resources :line_item, only: %i[create update destroy]
 end
