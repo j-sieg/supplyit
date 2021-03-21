@@ -1,5 +1,10 @@
-one:
-  email: 'seller_one@example.com'
+DEFAULTS: &DEFAULTS
+  encrypted_password: <%= Devise::Encryptor.digest(Seller, "Metamphetam1n3!") %>
 
-two:
-  email: 'seller_two@example.com'
+heisenberg:
+  <<: *DEFAULTS
+  email: 'heisenberg@example.com'
+
+jesse:
+  <<: *DEFAULTS
+  email: 'jesse_pinkman@example.com'

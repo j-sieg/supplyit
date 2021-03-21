@@ -3,10 +3,12 @@ DEFAULTS: &DEFAULTS
 
 aggregate:
   <<: *DEFAULTS
-  price: 499.95
+  seller: heisenberg
+  price: 999.95
   location: Somewhere I don't know
 
 cement:
   <<: *DEFAULTS
-  price: 999.95
-  location: Not on the floor
+  seller: jesse
+  price: 500.95
+  location: Somewhere near heisenberg

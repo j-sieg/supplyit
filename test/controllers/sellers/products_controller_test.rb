@@ -2,17 +2,19 @@ require "test_helper"
 
 class Sellers::ProductsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    seller = sellers(:one)
-    login_as(seller, scope: :seller)
-  
+    @seller = sellers(:heisenberg)
+    login_as(@seller, scope: :seller)
+
     @added_category = categories(:cement)
-    @product = products(:aggregate)
+    @product = @seller.products.first
     @product_params = {
       location: @product.location,
       name: @product.name,
       price: @product.price,
       category_ids: [@added_category.id]
     }
+
+    @other_product = products(:cement)
   end
 
   test "should get new" do
@@ -21,7 +23,7 @@ class Sellers::ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create product" do
-    assert_difference('Product.count') do
+    assert_difference ['Product.count', '@seller.products.count'] do
       post products_url, params: { product: @product_params }
     end
 
@@ -44,10 +46,29 @@ class Sellers::ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy product" do
-    assert_difference('Product.count', -1) do
+    assert_difference ['Product.count', '@seller.products.count'], -1 do
       delete product_url(@product)
     end
 
     assert_redirected_to products_url
   end
+
+  test "can only edit own product" do
+    assert_raise ActiveRecord::RecordNotFound do
+      get edit_product_url(@other_product)
+    end
+  end
+
+  test "can only update own product" do
+    assert_raise ActiveRecord::RecordNotFound do
+      patch product_url(@other_product)
+    end
+  end
+
+  test "can only delete own product" do
+    assert_raise ActiveRecord::RecordNotFound do
+      delete product_url(@other_product)
+    end
+  end
+
 end

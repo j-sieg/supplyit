@@ -1,10 +1,10 @@
 module Sellers
   class ProductsController < ApplicationController
-    before_action :set_product, only: [:show, :edit, :update, :destroy]
+    before_action :set_product, except: %i[new create]
 
     # GET /products/new
     def new
-      @product = Product.new
+      @product = current_seller.products.new
     end
 
     # GET /products/1/edit
@@ -13,7 +13,7 @@ module Sellers
 
     # POST /products
     def create
-      @product = Product.new(product_params)
+      @product = current_seller.products.new(product_params)
 
       if @product.save
         redirect_to @product, notice: 'Product was successfully created.'
@@ -40,7 +40,7 @@ module Sellers
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_product
-        @product = Product.find(params[:id])
+        @product = current_seller.products.find(params[:id])
       end
 
       # Only allow a list of trusted parameters through.
