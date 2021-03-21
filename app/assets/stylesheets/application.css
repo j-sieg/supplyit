@@ -22,3 +22,22 @@ a:hover {
   color: black;
   font-weight: bolder;
 }
+
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='date'],
+input[type='number'],
+textarea.form-control:focus {
+  border-width: 2px;
+}
+
+input[type='text']:focus,
+input[type='password']:focus,
+input[type='email']:focus,
+input[type='date']:focus,
+input[type='number']:focus,
+textarea.form-control:focus {
+  box-shadow: none;
+  border-color: black;
+}
