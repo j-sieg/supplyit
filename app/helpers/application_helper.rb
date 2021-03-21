@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def display_cart?
+    %w[registrations sessions pages].exclude?(controller.controller_name)
+  end
+
   def field_error(object, attr)
     errors = object.errors[attr.to_sym]
     if errors.any?
