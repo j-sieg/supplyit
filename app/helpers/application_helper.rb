@@ -11,4 +11,8 @@ module ApplicationHelper
       end
     end
   end
+
+  def price_format(price)
+    number_to_currency(price, unit: "₱", precision: 2)
+  end
 end

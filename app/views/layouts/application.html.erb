@@ -8,21 +8,13 @@
 
     <%= javascript_pack_tag 'application' %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= yield :head %>
   </head>
 
   <body>
     <%= render 'shared/navbar' %>
     <main class='container-fluid'>
-      <% if display_cart? %>
-        <div class='row'>
-          <%= render 'shared/cart' %>
-          <section class='col-lg-10 border border-dark'>
-            <%= yield %>
-          </section>
-        </div>
-      <% else %>
-        <%= yield %>
-      <% end %>
+      <%= yield %>
     </main>
   </body>
 </html>

@@ -1,9 +1,25 @@
-<section id="current-cart" class="col-lg-2 border border-danger">
-  <section class="items">
-    <ul>
-      <li> cement </li>
-      <li> rocks </li>
-      <li> hollow blocks </li>
-    </ul>
-  </section>
-</section>
+<details id='current-cart-details' data-controller='cart-details'>
+  <summary class='fw-bolder' data-action='click->cart-details#toggle'>
+    Cart total: <%= price_format(cart.total_price) %>
+  </summary>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% cart.line_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= price_format(item.price) %></td>
+        <td> x <%= item.quantity %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'Checkout', checkout_path %>
+</details>

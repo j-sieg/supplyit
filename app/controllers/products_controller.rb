@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products
   def index
     products = Product.all
-    render locals: { products: products }
+    render locals: { products: products, cart: @current_cart }
   end
 
   # GET /products/1

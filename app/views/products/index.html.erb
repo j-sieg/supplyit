@@ -1,4 +1,14 @@
-<h1>Products</h1>
+<%= content_for :title do %> | Products <% end %>
+<%= content_for :head do %>
+  <meta name="turbo-cache-control" content='no-preview'>
+<% end %>
+
+<article class='col-lg-4 mx-auto'>
+  <h1>Products</h1>
+  <section data-cart-opened="false">
+    <%= render 'shared/cart', cart: cart %>
+  </section>
+</article>
 
 <section id="products" class="row justify-content-center">
   <% products.each do |product| %>
