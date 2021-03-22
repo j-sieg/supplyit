@@ -15,13 +15,21 @@ module CurrentCart
   end
 
   def set_current_cart
-    if user_cart = current_user&.cart
-      @current_cart = user_cart
-    elsif user_signed_in? && (!current_user.cart)
-      set_cart
+    return @current_cart = current_user.cart if current_user&.cart&.loaded?
+
+    set_cart
+
+    # replace the user's empty cart with the loaded one
+    if current_user&.cart&.empty? && @cart.loaded?
+      current_user.cart = @cart
+      return @current_cart = @cart
+    end
+
+    if user_signed_in? && (!current_user.cart)
+      # authenticated w/ no cart
       @current_cart = current_user.cart = @cart
     else
-      set_cart
+      # unauthenticated
       @current_cart = @cart
     end
   end

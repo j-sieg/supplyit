@@ -1,18 +1,33 @@
 require "test_helper"
 
 class LineItemsControllerTest < ActionDispatch::IntegrationTest
-  test "should get create" do
-    get line_items_create_url
-    assert_response :success
+  setup do
+    @user = users(:darwin)
+    @product = products(:cement)
+    @other_product = products(:aggregate)
+    login_as(@user, scope: :user)
   end
 
-  test "should get update" do
-    get line_items_update_url
-    assert_response :success
+  test "should add line items to cart based on product_id" do
+    assert_difference ['LineItem.count'] do
+      post line_items_url, params: { product_id: @product.id }
+    end
+
+    assert_difference ['LineItem.count'] do
+      post line_items_url, params: { product_id: @other_product.id }
+    end
   end
 
-  test "should get destroy" do
-    get line_items_destroy_url
-    assert_response :success
+  test "increase quantity of item in cart with the same product_id" do
+    assert_difference ['LineItem.count'] do
+      post line_items_url, params: { product_id: @product.id }
+    end
+
+    assert_no_difference ['LineItem.count'] do
+      post line_items_url, params: { product_id: @product.id }
+    end
+
+    assert_equal @user.cart.line_items.first.quantity, 2
   end
+
 end

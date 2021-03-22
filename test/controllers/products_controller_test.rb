@@ -23,7 +23,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should set the cart to a logged in user without a cart" do
+  test "should make the unassigned cart belong to the user once logged in" do
     get products_url
     cart_id = session[:cart_id]
 
@@ -34,7 +34,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_equal user.cart.id, cart_id
   end
 
-  test "should not set the cart when a user has a cart" do
+  test "should not set the unassigned cart to the user when it is empty and the user already has a cart" do
     get products_url
     cart_id = session[:cart_id]
 
@@ -43,6 +43,18 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
     get products_url
     assert_not_equal user.cart.id, cart_id
+  end
+
+  test "replace user cart if the user cart is empty and the unassigned cart is not" do
+    get products_url
+    unassigned_cart_id = session[:cart_id]
+    post line_items_url, params: { product_id: @product.id }
+
+    user_with_empty_cart = users(:dane)
+    login_as(user_with_empty_cart, scope: :user)
+    get products_url
+
+    assert_equal user_with_empty_cart.reload_cart.id, unassigned_cart_id
   end
 
 end
