@@ -1,6 +1,6 @@
 class Cart < ApplicationRecord
   belongs_to :user, optional: true
-  has_many :line_items, dependent: :destroy
+  has_many :line_items, -> { eager_load :product }, dependent: :destroy
 
   def add_item(product)
     if item = self.line_items.find_by(product_id: product.id)

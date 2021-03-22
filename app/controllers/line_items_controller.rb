@@ -7,8 +7,6 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if new_item.save!
-        # reloading efficiently
-        @current_cart = Cart.includes(line_items: :product).find(@current_cart.id)
         format.html { redirect_to products_url }
         format.turbo_stream
       end
@@ -28,7 +26,6 @@ class LineItemsController < ApplicationController
     end
 
     respond_to do |format|
-      @current_cart = Cart.includes(line_items: :product).find(@current_cart.id)
       format.html { redirect_to products_url }
       format.turbo_stream { render 'create.turbo_stream' }
     end
