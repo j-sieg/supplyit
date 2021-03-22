@@ -23,6 +23,10 @@ a:hover {
   font-weight: bolder;
 }
 
+summary:focus {
+  outline: none;
+}
+
 input[type='text'],
 input[type='password'],
 input[type='email'],

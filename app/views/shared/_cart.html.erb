@@ -1,5 +1,6 @@
 <details id='current-cart-details' data-controller='cart-details'>
-  <summary class='fw-bolder' data-action='click->cart-details#toggle'>
+  <summary class='fw-bolder p-2 border-bottom border-2 border-dark'
+    data-action='click->cart-details#toggle'>
     Cart total: <%= price_format(cart.total_price) %>
   </summary>
 
@@ -9,17 +10,28 @@
         <th scope="col">Item</th>
         <th scope="col">Price</th>
         <th scope="col">Quantity</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <% cart.line_items.each do |item| %>
+      <% @current_cart.line_items.order(:created_at).each do |item| %>
       <tr>
         <td><%= item.product.name %></td>
         <td><%= price_format(item.price) %></td>
         <td> x <%= item.quantity %></td>
+        <td>
+          <%= button_to 'remove', line_item_path(item), method: :delete,
+            class: 'btn btn-sm border-0 bg-white text-decoration-underline' %>
+        </td>
       </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to 'Checkout', checkout_path %>
+
+  <section class='d-flex justify-content-between'>
+    <%= button_to 'Empty my cart',
+    cart_url(cart), method: :delete, data: { confirm: 'Are you sure?'},
+    form: { class: "d-inline" }, class: "border-0 bg-white text-decoration-underline" %>
+    <%= link_to 'Checkout', checkout_path %>
+  </section>
 </details>
