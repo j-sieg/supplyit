@@ -3,6 +3,15 @@
   <meta name="turbo-cache-control" content='no-preview'>
 <% end %>
 
-<section id="products" class="row justify-content-center">
-  <%= render products %>
-</section>
+<div class="row justify-content-center h-100">
+  <section data-cart-opened="true"
+    class="scrollable col-md-3 p-0 sticky-top d-flex">
+    <%= render 'shared/cart', cart: @current_cart %>
+  </section>
+
+  <section id="scrollable" class="col-md-9 m-0 h-100">
+    <div class="row justify-content-center">
+      <%= render products %>
+    </div>
+  </section>
+</div>

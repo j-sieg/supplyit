@@ -1,4 +1,5 @@
-<details id='current-cart-details' data-controller='cart-details'>
+<details id='current-cart-details' data-controller='cart-details'
+  class="table-responsive bg-white w-100">
   <summary class='fw-bolder p-2 border-bottom border-2 border-dark'
     data-action='click->cart-details#toggle'>
     Cart total: <%= price_format(cart.total_price) %>
@@ -15,7 +16,7 @@
     </thead>
     <tbody>
       <% cart.line_items.order(:created_at).each do |item| %>
-      <tr>
+      <tr class="<% if @new_item&.id == item.id %>added<% end %>">
         <td><%= item.product.name %></td>
         <td><%= price_format(item.price) %></td>
         <td> x <%= item.quantity %></td>
@@ -28,7 +29,7 @@
     </tbody>
   </table>
 
-  <section class='d-flex justify-content-between'>
+  <section class='d-flex justify-content-between p-3'>
     <%= button_to 'Empty my cart',
     cart_url(cart), method: :delete, data: { confirm: 'Are you sure?'},
     form: { class: "d-inline" }, class: "border-0 bg-white text-decoration-underline" %>

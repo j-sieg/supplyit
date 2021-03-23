@@ -12,10 +12,14 @@
 }
 
 .added {
-  animation: pink_flash 1s;
+  animation: blackflash 1s;
 }
 
-@keyframes pink_flash {
-  0% { background: #FF85BC; }
-  50% { background: #F065A3; }
+@keyframes blackflash {
+  0% { background: #333; }
+}
+
+#scrollable {
+  max-width: 100%;
+  overflow-y: scroll;
 }
