@@ -10,3 +10,12 @@
   background: black;
   color: whitesmoke;
 }
+
+.added {
+  animation: pink_flash 1s;
+}
+
+@keyframes pink_flash {
+  0% { background: #FF85BC; }
+  50% { background: #F065A3; }
+}
