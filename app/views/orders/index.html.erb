@@ -1,0 +1,23 @@
+<h1 class="text-center">Your orders</h1>
+<section class="mx-auto col-md-6 table-responsive">
+  <table id='orders-table' class="table">
+    <thead>
+      <tr>
+        <th scope="col">Order #</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% orders.each do |order| %>
+        <tr>
+          <td><%= link_to "Order##{order.id}", order_path(order) %></td>
+          <td><%= formatted_time(order.created_at) %></td>
+          <td><%= order.status %></td>
+          <td><%= price_format(order.total_cost) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

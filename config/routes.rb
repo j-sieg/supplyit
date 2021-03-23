@@ -3,14 +3,15 @@ Rails.application.routes.draw do
 
   devise_for :sellers
   devise_for :users
-  
+
   scope module: "sellers" do
     resources :products, except: %i[index show]
   end
 
-  get '/checkout', to: 'carts#index'
+  get '/checkout', to: 'orders#new'
 
   resources :carts, only: %i[destroy]
   resources :products, only: %i[index show]
   resources :line_items, only: %i[create destroy]
+  resources :orders, only: %i[index show create]
 end

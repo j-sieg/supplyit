@@ -1,0 +1,26 @@
+<section class="mx-auto col-md-6 table-responsive">
+  <h1 class="text-center text-decoration-underline w-100">
+    Order #<%= order.id %> on <%= formatted_time(order.created_at) %>
+  </h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% order.line_items.order(:created_at).each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= price_format(item.price) %></td>
+        <td> x <%= item.quantity %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <p class="fw-bolder"> Total cost of <%= price_format(order.total_cost) %></p>
+  <%= link_to "Back to orders", orders_path %>
+</section>

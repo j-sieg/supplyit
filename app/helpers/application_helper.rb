@@ -15,4 +15,8 @@ module ApplicationHelper
   def price_format(price)
     number_to_currency(price, unit: "₱", precision: 2)
   end
+
+  def formatted_time(time)
+    time.strftime('%d/%m/%Y %H:%M')
+  end
 end

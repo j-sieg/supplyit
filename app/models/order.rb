@@ -3,6 +3,11 @@ class Order < ApplicationRecord
   has_many :line_items, -> { includes :product }, dependent: :destroy
 
   enum status: %w[Canceled Processing Completed]
+  enum pay_type: {
+    'Credit Card': 0,
+    'Debit Card': 1,
+    'Gcash': 2
+  }
 
   validates :status, presence: true
 
@@ -13,4 +18,7 @@ class Order < ApplicationRecord
     end
   end
 
+  def total_cost
+    line_items.map { |item| item.total_price }.sum
+  end
 end

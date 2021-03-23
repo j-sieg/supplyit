@@ -1,0 +1,12 @@
+<h1 class="mx-auto mt-2 text-center">
+  Checkout
+</h1>
+<article class="col-md-6 mx-auto shadow p-3">
+  <h2> Order summary </h2>
+  <section data-cart-opened="true">
+    <%= render 'shared/cart', cart: cart %>
+  </section>
+  <hr />
+  <h2> Payment method </h2>
+  <%= button_to 'Confirm order', orders_path, data: { confirm: "Are you sure?" } %>
+</article>
