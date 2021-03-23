@@ -8,7 +8,7 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if new_item.save!
         format.html { redirect_to products_url }
-        format.turbo_stream
+        format.turbo_stream { render 'shared/update_cart' }
       end
     end
   end
@@ -27,7 +27,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to products_url }
-      format.turbo_stream { render 'create.turbo_stream' }
+      format.turbo_stream { render 'shared/update_cart' }
     end
   end
 end

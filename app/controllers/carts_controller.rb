@@ -6,8 +6,10 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    if @current_cart.destroy
-      redirect_to checkout_url, notice: "Your cart has been emptied"
+    respond_to do |format|
+      flash[:alert] = "Failed to destroy the cart" unless @current_cart.destroy
+      format.html { redirect_to checkout_url }
+      format.turbo_stream { render 'shared/update_cart' }
     end
   end
 end
