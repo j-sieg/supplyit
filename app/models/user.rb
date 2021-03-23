@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates_presence_of :full_name, :phone_number, :address, :birthday
 
   has_one :cart
+  has_many :orders, dependent: :destroy
 end
