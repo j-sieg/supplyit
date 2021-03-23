@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: %i[new]
+  before_action :authenticate_user!
   include CurrentCart
 
   before_action :set_order, only: %i[show]

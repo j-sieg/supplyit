@@ -15,6 +15,15 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "shold get new only when authenticated" do
+    get checkout_url
+    assert_redirected_to new_user_session_url
+
+    login_as(users(:darwin), scope: :user)
+    get checkout_url
+    assert_response :success
+  end
+
   test "should get show only when authenticated" do
     get order_url(@completed_order)
     assert_redirected_to new_user_session_url
