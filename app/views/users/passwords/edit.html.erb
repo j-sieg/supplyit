@@ -1,7 +1,8 @@
 <section class="col-sm-6 col-lg-4 mx-auto p-4 shadow mb-5 bg-body rounded mt-4">
   <h2>Change your password</h2>
 
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name),
+    html: { method: :put, data: {turbo: "false"} }) do |f| %>
     <%= f.hidden_field :reset_password_token %>
 
     <div class="mb-3">
