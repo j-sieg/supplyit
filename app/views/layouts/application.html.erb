@@ -12,7 +12,11 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
+    <% if seller_signed_in? %>
+      <%= render 'shared/seller_navbar' %>
+    <% else %>
+      <%= render 'shared/navbar' %>
+    <% end %>
     <main class='container-fluid'>
       <%= yield %>
     </main>
