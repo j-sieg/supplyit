@@ -1,0 +1,21 @@
+<article class="card col-sm-4 col-md-4 col-lg-3 p-3 rounded m-3 shadow-sm">
+  <%= image_tag('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcompactequip.com%2Fwp-content%2Fuploads%2Fwood-construction-materials.jpg&f=1&nofb=1', class: "img-fluid", size: "300") %>
+
+  <div class="card-body">
+    <h5 class="card-title"><%= product.name %></h5>
+  </div>
+
+  <ul class="list-group">
+    <li class="list-group-item border-0 pt-1">
+      <%= number_to_currency(product.price, unit: "₱", precision: 2) %>
+    </li>
+    <li class="list-group-item border-0 pt-1">
+      Location: <%= product.location %>
+    </li>
+    <li class="list-group-item border-0 pt-1">
+      <%= button_to 'add to cart', line_items_path,
+        class: "btn btn-sm btn-add-to-cart fw-bolder",
+        params: { product_id: product.id } %>
+    </li>
+  </ul>
+</article>

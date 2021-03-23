@@ -1,6 +1,14 @@
 module Sellers
   class ProductsController < ApplicationController
-    before_action :set_product, except: %i[new create]
+    before_action :set_product, except: %i[index new create]
+
+    def index
+      render locals: { products: current_seller.products }
+    end
+
+    def show
+      render locals: { product: @product }
+    end
 
     # GET /products/new
     def new
