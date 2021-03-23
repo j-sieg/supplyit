@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   devise_for :sellers
   devise_for :users
 
-  scope module: "sellers" do
-    resources :products, except: %i[index show]
+  namespace :sellers do
+    resources :products
   end
 
   get '/checkout', to: 'orders#new'
