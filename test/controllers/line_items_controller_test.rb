@@ -2,7 +2,7 @@ require "test_helper"
 
 class LineItemsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:darwin)
+    @user = users(:guy_without_cart)
     @product = products(:cement)
     @other_product = products(:aggregate)
     login_as(@user, scope: :user)

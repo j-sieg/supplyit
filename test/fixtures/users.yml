@@ -1,14 +1,23 @@
 DEFAULTS: &DEFAULTS
   encrypted_password: <%= Devise::Encryptor.digest(User, "1supersecret!") %>
+  phone_number: 09170000000
 
 dane:
   <<: *DEFAULTS
   email: dane@example.com
   full_name: dane danish
-  phone_number: 09170000000
 
 darwin:
   <<: *DEFAULTS
   email: darwin@example.com
   full_name: darwin darwene
-  phone_number: 09170000000
+
+homer:
+  <<: *DEFAULTS
+  email: homer@example.com
+  full_name: homer simpson
+
+guy_without_cart:
+  <<: *DEFAULTS
+  email: guywithoutcart@example.com
+  full_name: GuyWith OutCart

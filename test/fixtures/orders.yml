@@ -1,11 +1,4 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  user: one
-  status: 1
-  pay_type: 1
-
-two:
-  user: two
-  status: 1
-  pay_type: 1
+order_completed_by_homer:
+  user: homer
+  status: <%= Order.statuses['Completed'] %>
+  pay_type: <%= Order.pay_types['Credit Card'] %>

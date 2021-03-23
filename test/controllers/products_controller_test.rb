@@ -27,7 +27,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     get products_url
     cart_id = session[:cart_id]
 
-    user = users(:darwin)
+    user = users(:guy_without_cart)
     login_as(user, scope: :user)
 
     get products_url
@@ -45,7 +45,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_not_equal user.cart.id, cart_id
   end
 
-  test "replace user cart if the user cart is empty and the unassigned cart is not" do
+  test "replace user cart if the user cart is empty and the unassigned cart is loaded" do
     get products_url
     unassigned_cart_id = session[:cart_id]
     post line_items_url, params: { product_id: @product.id }

@@ -2,3 +2,6 @@
 
 empty_cart:
   user: dane
+
+loaded_cart_by_darwin:
+  user: darwin

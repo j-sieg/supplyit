@@ -6,7 +6,7 @@ class Sellers::ProductsControllerTest < ActionDispatch::IntegrationTest
     login_as(@seller, scope: :seller)
 
     @added_category = categories(:cement)
-    @product = @seller.products.first
+    @product = products(:aggregate)
     @product_params = {
       location: @product.location,
       name: @product.name,
@@ -45,11 +45,17 @@ class Sellers::ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to product_url(@product)
   end
 
-  test "should destroy product" do
-    assert_difference ['Product.count', '@seller.products.count'], -1 do
+  test "cannot destroy product with line items" do
+    assert_no_difference ['Product.count', '@seller.products.count'] do
       delete product_url(@product)
     end
+    assert_redirected_to products_url
+  end
 
+  test "should destroy product" do
+    assert_difference ['Product.count', '@seller.products.count'], -1 do
+      delete product_url(products(:destroyable_product_from_walt))
+    end
     assert_redirected_to products_url
   end
 

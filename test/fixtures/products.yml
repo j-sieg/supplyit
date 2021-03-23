@@ -12,3 +12,13 @@ cement:
   seller: jesse
   price: 500.95
   location: Somewhere near heisenberg
+
+destroyable_product_from_jesse:
+  <<: *DEFAULTS
+  seller: jesse
+  price: 59.95
+
+destroyable_product_from_walt:
+  <<: *DEFAULTS
+  seller: heisenberg
+  price: 59.95

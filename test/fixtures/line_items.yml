@@ -1,13 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  product: one
-  cart: one
-  price: 9.99
-  quantity: 1
+<% 10.times do |n| %>
+order_item_<%=n%>_from_homer:
+  product: cement
+  price: 500
+  order: order_completed_by_homer
+<% end %>
 
-two:
-  product: two
-  cart: two
-  price: 9.99
-  quantity: 1
+<% 5.times do |n| %>
+cart_item_<%=n%>_from_darwin:
+  product: aggregate
+  price: 400
+  cart: loaded_cart_by_darwin
+<% end %>
