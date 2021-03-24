@@ -8,6 +8,10 @@
     <div class="col-md-4">
       <% if @product.images.attached? %>
         <%= render 'shared/carousel', images: @product.images %>
+      <% else %>
+        <div class='row'>
+          <%= image_tag 'no_image_available', class: "img-responsive mt-4" %>
+        </div>
       <% end %>
     </div>
     <div class="col-md-8">
