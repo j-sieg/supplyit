@@ -1,6 +1,9 @@
-<h1 class="text-center"> Your products that are currently on the market </h1>
+<h1 class="text-center mt-4"> Your products that are currently on the market </h1>
 <section class="row justify-content-center">
   <% products.each do |product| %>
     <%= render product, product: product %>
+  <% end %>
+  <% if products.empty? %>
+    <h3 class="text-center"> You have none... </h3>
   <% end %>
 </section>

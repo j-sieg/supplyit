@@ -3,7 +3,7 @@ module Sellers
     before_action :set_product, except: %i[index new create]
 
     def index
-      render locals: { products: current_seller.products }
+      render locals: { products: current_seller.products.with_attached_images }
     end
 
     def show
@@ -53,7 +53,7 @@ module Sellers
 
       # Only allow a list of trusted parameters through.
       def product_params
-        params.require(:product).permit(:name, :price, :location, category_ids: [])
+        params.require(:product).permit(:name, :price, :location, category_ids: [], images: [])
       end
   end
 end

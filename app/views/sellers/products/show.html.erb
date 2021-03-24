@@ -1,3 +1,33 @@
-<div class="row mx-auto">
-  <%= render product, product: product %>
+<div class="row justify-content-center">
+  <article class="h-100 border border-dark border-3 col-md-6">
+
+    <% if product.images.attached? %>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% product.images.each do |image| %>
+        <div class="carousel-item <%if product.images.first == image %>active<% end %>">
+          <%= image_tag image, class: "mx-auto d-block", height: "400px"; %>
+        </div>
+        <% end %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <% end %>
+
+    <ul class="list-group">
+      <li class="list-group-item border-0 pt-1">
+        <%= number_to_currency(product.price, unit: "₱", precision: 2) %>
+      </li>
+      <li class="list-group-item border-0 pt-1">
+        Location: <%= product.location %>
+      </li>
+    </ul>
+  </article
 </div>

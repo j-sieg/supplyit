@@ -1,28 +1,38 @@
-<%= form_with(model: product) do |form| %>
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<%= form_with(model: product, url: sellers_products_url) do |form| %>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
     <%= field_error(product, :name) %>
   </div>
 
-  <div class="field">
-    <%= form.label :categories %>
-    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+  <div class="mb-3">
+    <%= form.label :images, class: "form-label" %>
+    <%= form.file_field :images, class: "form-control", multiple: true, direct_upload: true %>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+  <div class="mb-3 form-check">
+    <%= form.label "Categories the product belongs to", class: "form-label fw-bolder" %>
+    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name do |category| %>
+      <div class="d-block">
+        <%= category.label class: "form-check-label" %>
+        <%= category.check_box class: "form-check-input" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :price, class: "form-label" %>
+    <%= form.number_field :price, class: "form-control" %>
     <%= field_error(product, :price) %>
   </div>
 
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location %>
+  <div class="mb-3">
+    <%= form.label :location, class: "form-label" %>
+    <%= form.text_field :location, class: "form-control" %>
     <%= field_error(product, :location) %>
   </div>
 
-  <div class="actions">
+  <div class="mb-3">
     <%= form.submit %>
   </div>
 <% end %>

@@ -5,6 +5,7 @@ class Product < ApplicationRecord
   has_many :category_products, dependent: :destroy
   has_many :categories, through: :category_products
   has_many :line_items
+  has_many_attached :images
 
   before_destroy :ensure_not_referenced_by_line_items
 
