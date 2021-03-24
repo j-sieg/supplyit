@@ -9,6 +9,19 @@ class Product < ApplicationRecord
 
   before_destroy :ensure_not_referenced_by_line_items
 
+  def sold_count
+    # count all line items in existence
+    LineItem.where(product_id: id)
+      .joins(:order)
+      .where('orders.status = ?', Order.statuses['Completed'])
+      .distinct
+      .sum(:quantity)
+  end
+
+  def total_revenue
+    sold_count * price
+  end
+
   private
     def ensure_not_referenced_by_line_items
       unless line_items.empty?

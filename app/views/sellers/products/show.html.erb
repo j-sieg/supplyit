@@ -1,40 +1,47 @@
-<div class="row justify-content-center">
-  <article class="h-100 col-md-6 shadow mt-2 p-2">
+<div class="row align-items-end justify-content-around mb-4">
+  <h1 class="pb-0 mb-0 col-lg-8"><%= @product.name %> in detail </h1>
+  <%= link_to "Edit #{@product.name}", edit_sellers_product_path(@product), class: "mt-2 col-lg-4" %>
+</div>
 
-    <div class="row align-items-end justify-content-around mb-4">
-      <h1 class="pb-0 mb-0 col-lg-8"><%= @product.name %> in detail </h1>
-      <%= link_to "Edit #{@product.name}", edit_sellers_product_path(@product), class: "mt-2 col-lg-4" %>
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <%= image_tag product.images.first, height: "300px;" %>
     </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= product.name %></h5>
+        <p class="card-text">
+          <span class="fw-bolder">
+            Was on the market since <%= formatted_time(product.created_at) %>
+          </span>
+          <ul>
+            <li> Location:
+              <span class="fw-bolder"><%= product.location %></span>
+            </li>
+            <li> Price:
+              <span class="fw-bolder"> <%= product.price %> </span>
+              </li>
+            <li> Total sold:
+              <span class="fw-bolder"> <%= product.sold_count %> </span>
+            </li>
+            <li> How much you made from this:
+              <span class="fw-bolder"> <%= price_format(product.total_revenue) %> </span>
+            </li>
+          </ul>
+        </p>
 
-    <% if product.images.attached? %>
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <% product.images.each do |image| %>
-        <div class="carousel-item <%if product.images.first == image %>active<% end %>">
-          <%= image_tag image, class: "mx-auto d-block", height: "400px;" %>
-        </div>
-        <% end %>
+        <p class="card-text">
+          <%= button_to 'Delete this product', sellers_product_path(product),
+            method: :delete, class: "btn btn-sm btn-dark mb-2", data: {confirm: "Are you sure?"} %>
+          <small><em>
+            If this product fails to be deleted, it means people must have this
+            in their cart or order(s). To remove this product from the market just
+            mark it as<span class="fw-bolder"> "unavailable".</span>
+          <em></small>
+        </p>
+
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
-    <% end %>
-
-    <ul class="list-group">
-      <li class="list-group-item border-0 pt-1">
-        <%= number_to_currency(product.price, unit: "₱", precision: 2) %>
-      </li>
-      <li class="list-group-item border-0 pt-1">
-        Location: <%= product.location %>
-      </li>
-    </ul>
-    <%= button_to "Delete this product", sellers_product_path(product),
-      method: :delete, data: {confirm: "Are you sure?"} %>
-  </article>
+  </div>
 </div>
