@@ -34,5 +34,7 @@
         Location: <%= product.location %>
       </li>
     </ul>
-  </article
+    <%= button_to "Delete this product", sellers_product_path(product),
+      method: :delete, data: {confirm: "Are you sure?"} %>
+  </article>
 </div>

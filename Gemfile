@@ -16,6 +16,9 @@ gem 'webpacker', '~> 5.0'
 gem 'hotwire-rails'
 gem 'image_processing', '~> 1.2'
 
+# External storage
+gem 'aws-sdk-s3', '~> 1'
+
 # DB and Server
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
