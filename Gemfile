@@ -14,6 +14,7 @@ gem 'figaro'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 gem 'hotwire-rails'
+gem 'image_processing', '~> 1.2'
 
 # DB and Server
 gem 'pg', '~> 1.1'
@@ -44,4 +45,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
