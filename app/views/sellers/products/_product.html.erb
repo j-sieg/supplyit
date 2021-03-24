@@ -3,7 +3,7 @@
   <% if product.images.attached? %>
     <%= image_tag product.images.first.variant(resize_to_limit: [300, 300]) %>
   <% else %>
-    <%= image_tag 'no_image_available.jpeg', class: "img-responsive" %>
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpvsmt99345.i.lithium.com%2Ft5%2Fimage%2Fserverpage%2Fimage-id%2F10546i3DAC5A5993C8BC8C%3Fv%3D1.0&f=1&nofb=1" alt="no image available image">
   <% end %>
 
   <div class="card-body">
