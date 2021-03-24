@@ -2,6 +2,6 @@
   <div class="row align-items-end justify-content-around mb-4">
     <h1 class="pb-0 mb-0 col-lg-8">Editing <%= @product.name %> </h1>
     <%= link_to "Show #{@product.name} in detail", sellers_product_path(@product), class: "mt-2 col-lg-4" %>
-  </div
-  <%= render 'form', product: @product, url: sellers_products_path, method: :post %>
+  </div>
+  <%= render 'form', product: @product, url: sellers_product_path(@product), method: :patch %>
 </section>
