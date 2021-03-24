@@ -1,4 +1,4 @@
 <section class='shadow p-3 col-md-8 mx-auto my-4'>
   <h1>Add a new product</h1>
-  <%= render 'form', product: @product %>
+  <%= render 'form', product: @product, url: sellers_products_path, method: :post %>
 </section>

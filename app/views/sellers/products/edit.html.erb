@@ -1,6 +1,7 @@
-<h1>Editing Product</h1>
-
-<%= render 'form', product: @product %>
-
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+<section class='shadow p-3 col-md-8 mx-auto my-4'>
+  <div class="row align-items-end justify-content-around mb-4">
+    <h1 class="pb-0 mb-0 col-lg-8">Editing <%= @product.name %> </h1>
+    <%= link_to "Show #{@product.name} in detail", sellers_product_path(@product), class: "mt-2 col-lg-4" %>
+  </div
+  <%= render 'form', product: @product, url: sellers_products_path, method: :post %>
+</section>

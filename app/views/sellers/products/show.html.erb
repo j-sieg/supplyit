@@ -1,12 +1,17 @@
 <div class="row justify-content-center">
-  <article class="h-100 border border-dark border-3 col-md-6">
+  <article class="h-100 col-md-6 shadow mt-2 p-2">
+
+    <div class="row align-items-end justify-content-around mb-4">
+      <h1 class="pb-0 mb-0 col-lg-8"><%= @product.name %> in detail </h1>
+      <%= link_to "Edit #{@product.name}", edit_sellers_product_path(@product), class: "mt-2 col-lg-4" %>
+    </div>
 
     <% if product.images.attached? %>
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
       <div class="carousel-inner">
         <% product.images.each do |image| %>
         <div class="carousel-item <%if product.images.first == image %>active<% end %>">
-          <%= image_tag image, class: "mx-auto d-block", height: "400px"; %>
+          <%= image_tag image, class: "mx-auto d-block", height: "400px;" %>
         </div>
         <% end %>
       </div>

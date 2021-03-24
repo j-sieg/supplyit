@@ -26,7 +26,7 @@ module Sellers
       if @product.save
         redirect_to sellers_product_url(@product), notice: 'Product was successfully created.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -35,7 +35,7 @@ module Sellers
       if @product.update(product_params)
         redirect_to sellers_product_url(@product), notice: 'Product was successfully updated.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 
