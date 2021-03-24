@@ -1,0 +1,33 @@
+<div id="productImagesCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <% images.length.times do |n| %>
+      <button type="button" data-bs-target="#productImagesCarousel"
+        class="<% if n == 0 %>active<% end %>"
+        data-bs-slide-to="<%= n %>"
+        aria-current="<% if n == 0 %>true<% end %>"
+        aria-label="Slide <%= n + 1 %>">
+      </button>
+    <% end %>
+  </div>
+  <div class="carousel-inner">
+
+    <% images.each do |image| %>
+      <div class="carousel-item <% if images.first == image %>active<% end %>">
+        <%= image_tag image.variant(resize_to_limit: [300, 300]), class: "d-block w-100" %>
+      </div>
+    <% end %>
+
+  </div>
+
+  <button class="carousel-control-prev" type="button"
+    data-bs-target="#productImagesCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+
+  <button class="carousel-control-next" type="button"
+    data-bs-target="#productImagesCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

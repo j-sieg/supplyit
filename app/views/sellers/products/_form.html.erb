@@ -1,4 +1,5 @@
-<%= form_with(model: product, url: url, method: method) do |form| %>
+<%= form_with(model: product, url: url, method: method,
+  data: {controller: "direct-upload"}) do |form| %>
   <div class="mb-3">
     <%= form.label :name, class: "form-label" %>
     <%= form.text_field :name, class: "form-control" %>
@@ -7,7 +8,8 @@
 
   <div class="mb-3">
     <%= form.label :images, class: "form-label" %>
-    <%= form.file_field :images, class: "form-control", multiple: true, direct_upload: true %>
+    <%= form.file_field :images, class: "form-control",
+      multiple: true, direct_upload: true, data: {'direct-upload-target': 'fileField'} %>
   </div>
 
   <div class="mb-3 form-check">

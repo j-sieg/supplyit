@@ -6,7 +6,9 @@
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4">
-      <%= image_tag product.images.first, height: "300px;" %>
+      <% if @product.images.attached? %>
+        <%= render 'shared/carousel', images: @product.images %>
+      <% end %>
     </div>
     <div class="col-md-8">
       <div class="card-body">
