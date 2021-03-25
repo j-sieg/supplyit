@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
+    render locals: { product: @product }
   end
 
   private

@@ -12,14 +12,9 @@
       multiple: true, direct_upload: true, data: {'direct-upload-target': 'fileField'} %>
   </div>
 
-  <div class="mb-3 form-check">
-    <%= form.label "Categories the product belongs to", class: "form-label fw-bolder" %>
-    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name do |category| %>
-      <div class="d-block">
-        <%= category.label class: "form-check-label" %>
-        <%= category.check_box class: "form-check-input" %>
-      </div>
-    <% end %>
+  <div class="mb-3">
+    <%= form.label "Categories:", class: "form-label" %>
+    <%= form.collection_select :category_ids, Category.all, :id, :name, {include_blank: true}, multiple: true, class: "form-select" %>
   </div>
 
   <div class="mb-3">

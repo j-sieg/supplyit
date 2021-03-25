@@ -1,18 +1,52 @@
-<p id="notice"><%= notice %></p>
+<div class="row align-items-end justify-content-around mb-4">
+  <h1 class="pb-0 mb-0 col-lg-8"><%= @product.name %> in detail </h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <% if @product.images.attached? %>
+        <%= render 'shared/carousel', images: @product.images %>
+      <% else %>
+        <div class='row'>
+          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpvsmt99345.i.lithium.com%2Ft5%2Fimage%2Fserverpage%2Fimage-id%2F10546i3DAC5A5993C8BC8C%3Fv%3D1.0&f=1&nofb=1" alt="no image available image">
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= product.name %></h5>
+        <p class="card-text">
+          <ul class="list-group">
+            <li class="list-group-item"> Location:
+              <span class="fw-bolder"><%= product.location %></span>
+            </li>
+            <li class="list-group-item"> Price:
+              <span class="fw-bolder"> <%= product.price %> </span>
+              </li>
+            <li class="list-group-item">
+              <span class="fw-bolder"> Categories: &nbsp;</span>
+              <% product.categories.each do |category| %>
+                <button class="btn btn-sm btn-secondary"> <%= category.name %> </button>
+              <% end %>
+            </li>
+          </ul>
+        </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+        <p class="card-text">
+          <%= button_to 'add to cart', line_items_path,
+            class: "btn btn-sm btn-add-to-cart fw-bolder",
+            params: { product_id: product.id } %>
+        </p>
+        <%= link_to 'Back to products', products_path %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @product.location %>
-</p>
+  <section data-cart-opened="false"
+    class="scrollable col-md-6 p-0 sticky-top d-flex mr-auto">
+    <%= render 'shared/cart', cart: @current_cart %>
+  </section>
+</div>
 
-<%= link_to 'Back', products_path %>
+

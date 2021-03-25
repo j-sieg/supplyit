@@ -21,18 +21,24 @@
           <span class="fw-bolder">
             Was on the market since <%= formatted_time(product.created_at) %>
           </span>
-          <ul>
-            <li> Location:
+          <ul class="list-group">
+            <li class="list-group-item"> Location:
               <span class="fw-bolder"><%= product.location %></span>
             </li>
-            <li> Price:
+            <li class="list-group-item"> Price:
               <span class="fw-bolder"> <%= product.price %> </span>
               </li>
-            <li> Total sold:
+            <li class="list-group-item"> Total sold:
               <span class="fw-bolder"> <%= product.sold_count %> </span>
             </li>
-            <li> How much you made from this:
+            <li class="list-group-item"> How much you made from this:
               <span class="fw-bolder"> <%= price_format(product.total_revenue) %> </span>
+            </li>
+            <li class="list-group-item">
+              <span class="fw-bolder"> Categories: &nbsp;</span>
+              <% product.categories.each do |category| %>
+                <button class="btn btn-sm btn-secondary"> <%= category.name %> </button>
+              <% end %>
             </li>
           </ul>
         </p>
