@@ -1,10 +1,14 @@
 <article id="product_<%= product.id %>"
   class="card col-sm-4 col-lg-3 p-3 rounded m-3 shadow-sm<%if @added %> added<% end %>">
 
-  <% if product.images.attached? %>
-    <%= image_tag product.images.first %>
-  <% else %>
-    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpvsmt99345.i.lithium.com%2Ft5%2Fimage%2Fserverpage%2Fimage-id%2F10546i3DAC5A5993C8BC8C%3Fv%3D1.0&f=1&nofb=1" alt="no image available image">
+  <%= link_to product_path(product) do %>
+    <div class="row">
+      <% if product.images.attached? %>
+        <%= image_tag product.images.first %>
+      <% else %>
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpvsmt99345.i.lithium.com%2Ft5%2Fimage%2Fserverpage%2Fimage-id%2F10546i3DAC5A5993C8BC8C%3Fv%3D1.0&f=1&nofb=1" alt="no image available image">
+      <% end %>
+    </div>
   <% end %>
 
   <div class="card-body">
