@@ -1,9 +1,14 @@
-Seller.find_each do |seller|
-  10.times do
-    seller.products.create!(
-      name: Faker::Construction.material,
-      price: Faker::Commerce.price(range: 500..10000),
-      location: Faker::TvShows::Simpsons.location
-    )
-  end
+[
+  'Aggregates',
+  'Hollow Blocks',
+  'Cement',
+  'Glass',
+  'Paints',
+  'Pipes',
+  'Steels',
+  'Stones',
+  'Tiles',
+  'Timber'
+].each do |category_name|
+  Category.find_or_create_by!(name: category_name)
 end
