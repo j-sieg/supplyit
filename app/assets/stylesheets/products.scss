@@ -15,8 +15,16 @@
   animation: blackflash 1s;
 }
 
+.added-failed {
+  animation: redflash 1s;
+}
+
 @keyframes blackflash {
   0% { background: #333; }
+}
+
+@keyframes redflash {
+  0% { background: red; }
 }
 
 #scrollable {
