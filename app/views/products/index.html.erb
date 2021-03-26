@@ -20,10 +20,10 @@
       <% end %>
     </div>
     <div class="row justify-content-center">
-      <% if products %>
+      <% if products.present? %>
         <%= render products %>
       <% else %>
-        <h5> <%= no_products_message() %> </h5>
+        <h5 class="mt-4 text-center"> <%= no_products_message %> </h5>
       <% end %>
     </div>
   </section>
