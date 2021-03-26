@@ -2,7 +2,8 @@
   <h1 class="pb-0 mb-0 col-lg-8"><%= @product.name %> in detail </h1>
 </div>
 
-<div class="card mb-3">
+<div class="card p-4 mb-3" data-controller="addable" data-addable-added-class="added"
+  data-addable-failed-class="added-failed">
   <div class="row g-0">
     <div class="col-md-4">
       <% if @product.images.attached? %>
@@ -34,9 +35,8 @@
         </p>
 
         <p class="card-text">
-          <%= button_to 'add to cart', line_items_path,
-            class: "btn btn-sm btn-add-to-cart fw-bolder",
-            params: { product_id: product.id } %>
+          <%= button_to 'add to cart', line_items_path, class: "btn btn-sm btn-add-to-cart fw-bolder",
+            params: { product_id: product.id }, form: { 'data-addable-target': 'addButton' } %>
         </p>
         <%= link_to 'Back to products', products_path %>
       </div>
