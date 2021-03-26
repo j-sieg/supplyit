@@ -5,4 +5,8 @@ class Category < ApplicationRecord
   has_many :products, through: :category_products
 
   before_save { |category| category.name = category.name.downcase }
+
+  def capitalized_name
+    name.capitalize
+  end
 end

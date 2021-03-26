@@ -49,6 +49,7 @@ input[type='email']:focus,
 input[type='date']:focus,
 input[type='number']:focus,
 input[type='submit']:focus,
+select[class='form-select']:focus,
 textarea.form-control:focus {
   box-shadow: none;
   border-color: black;

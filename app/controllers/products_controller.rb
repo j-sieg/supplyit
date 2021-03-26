@@ -4,7 +4,13 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    products = Product.all.with_attached_images
+    products = case params[:category]
+    in "" | nil
+      Product.all.with_attached_images
+    in String => category
+      Category.find_by(name: category)&.products&.with_attached_images
+    end
+
     render locals: { products: products, cart: @current_cart }
   end
 

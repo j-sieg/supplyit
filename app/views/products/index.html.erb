@@ -7,8 +7,24 @@
   </section>
 
   <section id="scrollable" class="col-md-9 m-0 h-100">
+    <div class="col-md-6 mx-auto mt-3">
+      <%= form_with(url: products_path, method: :get) do |form| %>
+        <div class="d-flex align-items-end">
+          <%= form.collection_select :category, Category.all, :name, :capitalized_name,
+            {include_blank: true, selected: params[:category]}, class: "form-select" %>
+          <%= form.submit 'Filter' , class: "btn btn-dark ms-2", name: nil %>
+          <% if params[:category].present? %>
+            <%= link_to 'Clear', products_path, class: "btn btn-dark ms-2" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
     <div class="row justify-content-center">
-      <%= render products %>
+      <% if products %>
+        <%= render products %>
+      <% else %>
+        <h5> <%= no_products_message() %> </h5>
+      <% end %>
     </div>
   </section>
 </div>
