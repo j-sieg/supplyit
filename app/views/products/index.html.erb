@@ -1,7 +1,7 @@
 <%= content_for :title do %> | Products <% end %>
 <% if notice = flash[:notice] %>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>Something went wrong!</strong> <%= notice %>
+  <div class="small alert alert-warning alert-dismissible fade show mt-3" role="alert">
+    <%= notice %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
