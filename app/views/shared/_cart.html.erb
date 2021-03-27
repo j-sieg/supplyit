@@ -29,10 +29,12 @@
     </tbody>
   </table>
 
-  <section class='d-flex justify-content-between p-3'>
-    <%= button_to 'Empty my cart',
-    cart_url(cart), method: :delete, data: { confirm: 'Are you sure?'},
-    form: { class: "d-inline" }, class: "border-0 bg-white text-decoration-underline" %>
-    <%= link_to 'Checkout', checkout_path %>
-  </section>
+  <% if cart.line_items.length != 0 %>
+    <section class='d-flex justify-content-between p-3'>
+      <%= button_to 'Empty my cart',
+      cart_url(cart), method: :delete, data: { confirm: 'Are you sure?'},
+      form: { class: "d-inline" }, class: "border-0 bg-white text-decoration-underline" %>
+      <%= link_to 'Checkout', checkout_path %>
+    </section>
+  <% end %>
 </details>

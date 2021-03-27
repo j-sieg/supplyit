@@ -34,6 +34,6 @@ class OrdersController < ApplicationController
     end
 
     def ensure_cart_is_loaded
-      redirect_to products_url, notice: "Your cart is empty!" unless @current_cart.loaded?
+      redirect_to products_url, notice: "You can't order anything with an empty cart..." unless @current_cart.loaded?
     end
 end

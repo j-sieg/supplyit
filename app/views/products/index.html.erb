@@ -1,4 +1,10 @@
 <%= content_for :title do %> | Products <% end %>
+<% if notice = flash[:notice] %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Something went wrong!</strong> <%= notice %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
 
 <div class="row justify-content-center h-100">
   <section data-cart-opened="true"
