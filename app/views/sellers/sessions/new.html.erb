@@ -1,6 +1,10 @@
 <section class='col-sm-6 col-lg-4 mx-auto p-4 shadow mb-5 bg-body rounded mt-4'>
   <h2>Seller Log in</h2>
 
+  <% if alert = flash[:alert] %>
+    <p class='text-info text-center mx-auto'><%= flash[:alert] %></p>
+  <% end %>
+
   <%= form_for(resource, as: resource_name, url: session_path(resource_name),
     html: { data: {turbo: "false"} }) do |f| %>
     <div class="mb-3">

@@ -1,17 +1,16 @@
 DEFAULTS: &DEFAULTS
   name: $LABEL
+  location: <%= Faker::TvShows::Simpsons.location %>
 
 aggregate:
   <<: *DEFAULTS
   seller: heisenberg
   price: 999.95
-  location: Somewhere I don't know
 
 cement:
   <<: *DEFAULTS
   seller: jesse
   price: 500.95
-  location: Somewhere near heisenberg
 
 destroyable_product_from_jesse:
   <<: *DEFAULTS

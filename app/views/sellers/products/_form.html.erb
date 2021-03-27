@@ -1,5 +1,5 @@
 <%= form_with(model: product, url: url, method: method,
-  data: {controller: "direct-upload"}) do |form| %>
+  data: {controller: "direct-upload"}, id: "product-form") do |form| %>
   <div class="mb-3">
     <%= form.label :name, class: "form-label" %>
     <%= form.text_field :name, class: "form-control" %>
