@@ -27,7 +27,13 @@
     </div>
     <div class="row justify-content-center">
       <% if products.present? %>
-        <%= render products %>
+        <% cache products do %>
+          <% products.each do |product| %>
+            <% cache product do %>
+              <%= render 'products/product', product: product %>
+            <% end %>
+          <% end %>
+        <% end %>
       <% else %>
         <h5 class="mt-4 text-center"> <%= no_products_message %> </h5>
       <% end %>
