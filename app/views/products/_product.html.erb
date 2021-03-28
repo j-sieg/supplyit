@@ -1,6 +1,6 @@
 <article id="product_<%= product.id %>" data-controller="addable" data-addable-added-class="added"
   data-addable-failed-class="added-failed"
-  class="card col-sm-4 col-lg-3 p-3 rounded m-3 shadow-sm<%if @added %> added<% end %>">
+  class="card col-5 col-sm-4 col-lg-3 p-2 rounded m-2 mt-3 shadow-sm<%if @added %> added<% end %>">
 
   <%= link_to product_path(product) do %>
     <div class="row">
@@ -12,20 +12,19 @@
     </div>
   <% end %>
 
-  <div class="card-body">
-    <%= link_to product_path(product) do %>
-      <h5 class="card-title"><%= product.name %></h5>
-    <% end %>
-  </div>
-
-  <ul class="list-group">
+  <ul class="list-group mt-auto pt-2">
+    <li class="list-group-item border-0 pt-1">
+      <%= link_to product_path(product) do %>
+        <h5 class="card-title text-center"><%= product.name %></h5>
+      <% end %>
+    </li>
     <li class="list-group-item border-0 pt-1">
       <%= number_to_currency(product.price, unit: "₱", precision: 2) %>
     </li>
     <li class="list-group-item border-0 pt-1">
       Location: <%= product.location %>
     </li>
-    <li class="list-group-item border-0 pt-1">
+    <li class="list-group-item border-0 pt-1 d-flex justify-content-center">
       <%= button_to 'add to cart', line_items_path, class: "btn btn-sm btn-add-to-cart fw-bolder",
         params: { product_id: product.id }, form: { 'data-addable-target': 'addButton' } %>
     </li>
