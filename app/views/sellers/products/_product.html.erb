@@ -1,27 +1,28 @@
-<article id="product_<%= product.id %>" class="card col-sm-4 col-md-4 col-lg-3 p-3 rounded m-3 shadow-sm">
+<article id="product_<%= product.id %>" data-controller="addable" data-addable-added-class="added"
+  data-addable-failed-class="added-failed"
+  class="card col-5 col-sm-4 col-lg-3 p-2 rounded m-2 mt-3 shadow-sm<%if @added %> added<% end %>">
 
-  <% if product.images.attached? %>
-    <%= image_tag product.images.first.variant(resize_to_limit: [300, 300]) %>
-  <% else %>
-    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpvsmt99345.i.lithium.com%2Ft5%2Fimage%2Fserverpage%2Fimage-id%2F10546i3DAC5A5993C8BC8C%3Fv%3D1.0&f=1&nofb=1" alt="no image available image">
+  <%= link_to sellers_product_path(product) do %>
+    <div class="row">
+      <% if product.images.attached? %>
+        <%= image_tag product.images.first %>
+      <% else %>
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpvsmt99345.i.lithium.com%2Ft5%2Fimage%2Fserverpage%2Fimage-id%2F10546i3DAC5A5993C8BC8C%3Fv%3D1.0&f=1&nofb=1" alt="no image available image">
+      <% end %>
+    </div>
   <% end %>
 
-  <div class="card-body">
-    <h5 class="card-title"><%= product.name %></h5>
-  </div>
-
-  <ul class="list-group">
+  <ul class="list-group mt-auto pt-2">
+    <li class="list-group-item border-0 pt-1">
+      <%= link_to sellers_product_path(product) do %>
+        <h5 class="card-title text-center"><%= product.name %></h5>
+      <% end %>
+    </li>
     <li class="list-group-item border-0 pt-1">
       <%= number_to_currency(product.price, unit: "₱", precision: 2) %>
     </li>
     <li class="list-group-item border-0 pt-1">
       Location: <%= product.location %>
     </li>
-    <li class="list-group-item border-0 pt-1">
-      <%= link_to 'Details', sellers_product_path(product),
-        class: "btn btn-sm btn-add-to-cart fw-bolder",
-        params: { product_id: product.id } %>
-    </li>
   </ul>
-
 </article>

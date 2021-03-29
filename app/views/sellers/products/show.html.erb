@@ -1,11 +1,6 @@
-<div class="row align-items-end justify-content-around mb-4">
-  <h1 class="pb-0 mb-0 col-lg-8"><%= @product.name %> in detail </h1>
-  <%= link_to "Edit #{@product.name}", edit_sellers_product_path(@product), class: "mt-2 col-lg-4" %>
-</div>
-
-<div class="card mb-3">
+<div class="card mb-3 mt-4">
   <div class="row g-0">
-    <div class="col-md-4">
+    <div class="col-md-4 p-4">
       <% if @product.images.attached? %>
         <%= render 'shared/carousel', images: @product.images %>
       <% else %>
@@ -18,9 +13,14 @@
       <div class="card-body">
         <h5 class="card-title"><%= product.name %></h5>
         <p class="card-text">
-          <span class="fw-bolder">
+          <span class="fw-bolder d-block">
             Was on the market since <%= formatted_time(product.created_at) %>
           </span>
+          <div class="my-2">
+            <%= link_to "Edit #{@product.name}", edit_sellers_product_path(@product), class: "mt-2 col-lg-4" %>
+            |
+            <%= link_to "Back to my products", sellers_products_path, class: "mt-2 col-lg-4" %>
+          </div>
           <ul class="list-group">
             <li class="list-group-item"> Location:
               <span class="fw-bolder"><%= product.location %></span>
