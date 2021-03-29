@@ -11,6 +11,7 @@ export default class extends Controller {
   add(event) {
     const pureElement = this.element
     if (event.detail.success) {
+      this.element.classList.remove(this.failedClass)
       this.element.classList.add(this.addedClass)
     } else {
       this.element.classList.add(this.failedClass)
