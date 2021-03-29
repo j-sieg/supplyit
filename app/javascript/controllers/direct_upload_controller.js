@@ -27,6 +27,7 @@ export default class extends Controller {
   }
 
   disconnect() {
-    this.fileFieldTarget.removeEventListener('direct-upload:initialize', this.completed)
+    this.fileFieldTarget.removeEventListener('direct-upload:initialize', this.displayBusy)
+    this.fileFieldTarget.removeEventListener('direct-upload:end', this.completed)
   }
 }

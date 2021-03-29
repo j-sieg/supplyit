@@ -9,6 +9,11 @@ class Product < ApplicationRecord
 
   before_destroy :ensure_not_referenced_by_line_items
 
+  validates :images, content_type: {
+    in: %i[png jpg jpeg],
+    message: 'Images should only be a PNG, JPG or JPEG'
+  }
+
   def sold_count
     # count all line items in existence
     LineItem.where(product_id: id)

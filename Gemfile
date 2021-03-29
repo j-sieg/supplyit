@@ -15,6 +15,7 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 gem 'hotwire-rails'
 gem 'image_processing', '~> 1.2'
+gem 'active_storage_validations'
 
 # External storage
 gem 'aws-sdk-s3', '~> 1'
