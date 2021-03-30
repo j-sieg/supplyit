@@ -1,15 +1,22 @@
 <h1 class="mx-auto mt-2 text-center">
   Checkout
 </h1>
+
 <article class="col-md-6 mx-auto shadow p-3">
   <div class="d-flex align-items-end justify-content-around mb-2">
     <h2 class="pb-0 mb-0"> Order summary </h2>
     <%= link_to 'Back to products', products_path %>
   </div>
+
   <section data-cart-opened="true">
     <%= render 'shared/cart', cart: cart %>
   </section>
-  <hr />
-  <h2> Payment method </h2>
-  <%= button_to 'Confirm order', orders_path, data: { confirm: "Are you sure?" } %>
+
+  <section class="row justify-content-center border-top border-3 border-dark">
+    <h2 class="mt-3 text-center"> Payment method </h2>
+    <%= button_to 'Confirm order',
+      { action: "create" },
+      { form_class: "text-center", data: {confirm: "Are you sure?"} } %>
+  </section>
 </article>
+
