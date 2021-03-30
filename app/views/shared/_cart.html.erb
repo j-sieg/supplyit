@@ -17,19 +17,27 @@
     <tbody>
       <% cart.line_items.order(:created_at).each do |item| %>
       <tr class="<% if @new_item&.id == item.id %>added<% end %>">
-        <td><%= item.product.name %></td>
+        <td>
+          <%= link_to "#{item.product.name}", product_url(item.product) %>
+        </td>
         <td><%= price_format(item.price) %></td>
         <td> x <%= item.quantity %></td>
         <td>
-          <%= button_to 'remove', line_item_path(item), method: :delete,
-            class: 'btn btn-sm border-0 bg-white text-decoration-underline' %>
+          <% if @ordering %>
+            <%= button_to 'remove', line_item_path(item), method: :delete,
+              class: 'btn btn-sm border-0 bg-white text-decoration-underline',
+              params: { ordering: true } %>
+            <% else %>
+            <%= button_to 'remove', line_item_path(item), method: :delete,
+              class: 'btn btn-sm border-0 bg-white text-decoration-underline' %>
+          <% end %>
         </td>
       </tr>
       <% end %>
     </tbody>
   </table>
 
-  <% if cart.line_items.length != 0 %>
+  <% if cart.line_items.length != 0 && !@ordering %>
     <section class='d-flex justify-content-between p-3'>
       <%= button_to 'Empty my cart',
       cart_url(cart), method: :delete, data: { confirm: 'Are you sure?'},

@@ -1,6 +1,8 @@
 class LineItemsController < ApplicationController
   include CurrentCart
 
+  before_action :set_ordering
+
   def create
     product = Product.find(params[:product_id])
     @new_item = @current_cart.add_item(product)
@@ -14,9 +16,6 @@ class LineItemsController < ApplicationController
         end
       end
     end
-  end
-
-  def update
   end
 
   def destroy
@@ -33,4 +32,9 @@ class LineItemsController < ApplicationController
       format.turbo_stream { render 'shared/update_cart' }
     end
   end
+
+  private
+    def set_ordering
+      @ordering = params[:ordering].present?
+    end
 end

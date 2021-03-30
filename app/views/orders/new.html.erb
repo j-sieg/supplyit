@@ -2,7 +2,10 @@
   Checkout
 </h1>
 <article class="col-md-6 mx-auto shadow p-3">
-  <h2> Order summary </h2>
+  <div class="d-flex align-items-end justify-content-around mb-2">
+    <h2 class="pb-0 mb-0"> Order summary </h2>
+    <%= link_to 'Back to products', products_path %>
+  </div>
   <section data-cart-opened="true">
     <%= render 'shared/cart', cart: cart %>
   </section>

@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @ordering = true
     render locals: { cart: @current_cart }
   end
 
