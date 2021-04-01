@@ -45,4 +45,38 @@
       <% end %>
     </tbody>
   </table>
+
+  <% if cart.line_items.length != 0 && !@ordering %>
+    <section class='d-flex justify-content-between p-3'>
+      <button
+        type="button"
+        class="border-0 bg-white text-decoration-underline"
+        data-bs-toggle="modal" data-bs-target="#sharedModal">
+        Empty cart
+      </button>
+      <%= link_to 'Checkout', checkout_path %>
+    </section>
+  <% end %>
+
+  <%= content_for :modal_body do %>
+    <% if !@ordering %>
+      <h5> Are you sure you don't just want to remove stuff? </h5>
+      <div class="d-flex justify-content-around">
+        <%= button_to 'Empty my cart', cart_path(@current_cart),
+          method: :delete, form: { data: { 'modal-target': 'submitForm' } } %>
+        <button data-bs-dismiss="modal">Close</button>
+      </div>
+      <p class="d-none text-danger text-center fw-bolder mb-0 pb-0 mt-2"
+      data-modal-target="errorMessage">Failed to empty the cart...</p>
+    <% else %>
+      <h5 class='text-center mb-4'> Last chance to back out... </h5>
+      <div class="d-flex justify-content-around">
+        <%= button_to 'Confirm order', { action: "create" },
+        form: { data: { 'modal-target': 'submitForm' } } %>
+        <button data-bs-dismiss="modal">Take me back!</button>
+      </div>
+      <p class="d-none text-danger text-center fw-bolder mb-0 pb-0 mt-2"
+      data-modal-target="errorMessage">Failed to confirm your order...</p>
+    <% end %>
+  <% end %>
 </details>

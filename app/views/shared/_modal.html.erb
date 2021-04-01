@@ -1,0 +1,12 @@
+<div id="sharedModal"
+  data-controller="modal"
+  class="modal fade" tabindex="-1"
+  aria-labelledby="sharedModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" data-modal-target="body">
+        <%= yield :modal_body %>
+      </div>
+    </div>
+  </div>
+</div>
