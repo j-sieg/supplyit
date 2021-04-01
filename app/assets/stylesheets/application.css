@@ -21,6 +21,12 @@ main {
   height: 90%;
 }
 
+@media(min-width: 768px) {
+  #cart-container {
+    height: 100%;
+  }
+}
+
 a {
   color: #333;
 }

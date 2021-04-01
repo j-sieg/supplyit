@@ -1,15 +1,13 @@
 <article id="product_<%= product.id %>" data-controller="addable" data-addable-added-class="added"
   data-addable-failed-class="added-failed"
-  class="card col-5 col-sm-4 col-lg-3 p-2 rounded m-2 mt-3 shadow-sm<%if @added %> added<% end %>">
+  class="product card col-5 col-sm-4 col-lg-3 p-2 rounded m-2 mt-3 shadow-sm<%if @added %> added<% end %>">
 
   <%= link_to product_path(product) do %>
-    <div class="row">
-      <% if product.images.attached? %>
-        <%= image_tag product.images.first %>
-      <% else %>
-        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpvsmt99345.i.lithium.com%2Ft5%2Fimage%2Fserverpage%2Fimage-id%2F10546i3DAC5A5993C8BC8C%3Fv%3D1.0&f=1&nofb=1" alt="no image available image">
-      <% end %>
-    </div>
+    <% if product.images.attached? %>
+      <%= image_tag product.images.first, class: "card-img-top" %>
+    <% else %>
+      <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpvsmt99345.i.lithium.com%2Ft5%2Fimage%2Fserverpage%2Fimage-id%2F10546i3DAC5A5993C8BC8C%3Fv%3D1.0&f=1&nofb=1" alt="no image available image" class="card-img-top">
+    <% end %>
   <% end %>
 
   <ul class="list-group mt-auto pt-2">

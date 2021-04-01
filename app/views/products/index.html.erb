@@ -11,11 +11,11 @@
 
 <div class="row justify-content-center h-100">
   <section id="cart-container" data-cart-opened="true"
-    class="col-md-4 sticky-top d-flex scrollable">
+    class="col-md-4 sticky-top d-flex">
     <%= render 'shared/cart', cart: @current_cart %>
   </section>
 
-  <section id="scrollable" class="col-md-8 m-0 h-100">
+  <section class="scrollable col-md-8 m-0 h-100">
     <div class="col-md-6 mx-auto mt-3">
       <%= form_with(url: products_path, method: :get) do |form| %>
         <div class="d-flex align-items-end">
@@ -28,7 +28,7 @@
         </div>
       <% end %>
     </div>
-    <div class="row justify-content-center">
+    <div id="products" class="row justify-content-center">
       <% if products.present? %>
         <% cache products do %>
           <% products.each do |product| %>

@@ -27,12 +27,15 @@
   0% { background: red; }
 }
 
-#scrollable {
+.scrollable {
   overflow-y: scroll;
 }
 
-@media(min-width: 768px) {
-  #cart-container {
-    height: 100%;
+#products {
+  .product {
+    img {
+      height: 15vw;
+      object-fit: cover;
+    }
   }
 }
