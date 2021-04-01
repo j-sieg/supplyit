@@ -1,9 +1,13 @@
-<div class="row align-items-end justify-content-around mb-4">
-  <h1 class="pb-0 mb-0 col-lg-8"><%= @product.name %> in detail </h1>
-</div>
+<%= content_for :title do %> | <%= product.name %><% end %>
+
+<section data-cart-opened="false"
+  class="scrollable col-md-6 p-0 sticky-top d-flex mx-auto my-4">
+  <%= render 'shared/cart', cart: @current_cart %>
+</section>
 
 <div class="card p-4 mb-3" data-controller="addable" data-addable-added-class="added"
   data-addable-failed-class="added-failed">
+
   <div class="row g-0">
     <div class="col-md-4">
       <% if @product.images.attached? %>
@@ -14,6 +18,7 @@
         </div>
       <% end %>
     </div>
+
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title"><%= product.name %></h5>
@@ -43,10 +48,6 @@
     </div>
   </div>
 
-  <section data-cart-opened="false"
-    class="scrollable col-md-6 p-0 sticky-top d-flex mr-auto">
-    <%= render 'shared/cart', cart: @current_cart %>
-  </section>
 </div>
 
 

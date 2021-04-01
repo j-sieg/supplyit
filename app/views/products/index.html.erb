@@ -1,4 +1,7 @@
 <%= content_for :title do %> | Products <% end %>
+<%= content_for :head do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
 <% if notice = flash[:notice] %>
   <div class="small alert alert-warning alert-dismissible fade show mt-3" role="alert">
     <%= notice %>
