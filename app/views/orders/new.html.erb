@@ -14,9 +14,11 @@
 
   <section class="row justify-content-center border-top border-3 border-dark">
     <h2 class="mt-3 text-center"> Payment method </h2>
-    <%= button_to 'Confirm order',
-      { action: "create" },
-      { form_class: "text-center", data: {confirm: "Are you sure?"} } %>
+    <button
+      type="button" data-bs-toggle="modal"
+      data-bs-target="#sharedModal" style="max-width: min-content;">
+      Pay
+    </button>
   </section>
 </article>
 

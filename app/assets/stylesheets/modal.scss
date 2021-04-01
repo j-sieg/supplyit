@@ -1,0 +1,9 @@
+#sharedModal {
+  .failed__submit {
+    animation: redborderflash 1s;
+  }
+
+  @keyframes redborderflash {
+    0% { border: 3px solid red; }
+  }
+}
