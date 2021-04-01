@@ -28,6 +28,11 @@
 }
 
 #scrollable {
-  max-width: 100%;
   overflow-y: scroll;
+}
+
+@media(min-width: 768px) {
+  #cart-container {
+    height: 100%;
+  }
 }

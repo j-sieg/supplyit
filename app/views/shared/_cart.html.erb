@@ -1,9 +1,18 @@
 <details id='current-cart-details' data-controller='cart-details'
-  class="table-responsive bg-white w-100">
+  class="table-responsive w-100 bg-white">
   <summary class='fw-bolder p-2 border-bottom border-2 border-dark'
     data-action='click->cart-details#toggle'>
     Cart total: <%= price_format(cart.total_price) %>
   </summary>
+
+  <% if cart.line_items.length != 0 && !@ordering %>
+    <section class='d-flex justify-content-between p-3'>
+      <%= button_to 'Empty my cart',
+      cart_url(cart), method: :delete, data: { confirm: 'Are you sure?'},
+      form: { class: "d-inline" }, class: "border-0 text-decoration-underline" %>
+      <%= link_to 'Checkout', checkout_path %>
+    </section>
+  <% end %>
 
   <table class="table">
     <thead>
@@ -25,24 +34,15 @@
         <td>
           <% if @ordering %>
             <%= button_to 'remove', line_item_path(item), method: :delete,
-              class: 'btn btn-sm border-0 bg-white text-decoration-underline',
+              class: 'btn btn-sm border-0 text-decoration-underline',
               params: { ordering: true } %>
             <% else %>
             <%= button_to 'remove', line_item_path(item), method: :delete,
-              class: 'btn btn-sm border-0 bg-white text-decoration-underline' %>
+              class: 'btn btn-sm border-0 text-decoration-underline' %>
           <% end %>
         </td>
       </tr>
       <% end %>
     </tbody>
   </table>
-
-  <% if cart.line_items.length != 0 && !@ordering %>
-    <section class='d-flex justify-content-between p-3'>
-      <%= button_to 'Empty my cart',
-      cart_url(cart), method: :delete, data: { confirm: 'Are you sure?'},
-      form: { class: "d-inline" }, class: "border-0 bg-white text-decoration-underline" %>
-      <%= link_to 'Checkout', checkout_path %>
-    </section>
-  <% end %>
 </details>

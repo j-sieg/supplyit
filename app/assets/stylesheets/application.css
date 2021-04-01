@@ -27,7 +27,6 @@ a {
 
 a:hover {
   color: black;
-  font-weight: bolder;
 }
 
 summary:focus {
