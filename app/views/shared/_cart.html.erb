@@ -7,9 +7,12 @@
 
   <% if cart.line_items.length != 0 && !@ordering %>
     <section class='d-flex justify-content-between p-3'>
-      <%= button_to 'Empty my cart',
-      cart_url(cart), method: :delete, data: { confirm: 'Are you sure?'},
-      form: { class: "d-inline" }, class: "border-0 text-decoration-underline" %>
+      <button
+        type="button"
+        class="border-0 bg-white text-decoration-underline"
+        data-bs-toggle="modal" data-bs-target="#sharedModal">
+        Empty cart
+      </button>
       <%= link_to 'Checkout', checkout_path %>
     </section>
   <% end %>
@@ -45,18 +48,6 @@
       <% end %>
     </tbody>
   </table>
-
-  <% if cart.line_items.length != 0 && !@ordering %>
-    <section class='d-flex justify-content-between p-3'>
-      <button
-        type="button"
-        class="border-0 bg-white text-decoration-underline"
-        data-bs-toggle="modal" data-bs-target="#sharedModal">
-        Empty cart
-      </button>
-      <%= link_to 'Checkout', checkout_path %>
-    </section>
-  <% end %>
 
   <%= content_for :modal_body do %>
     <% if !@ordering %>

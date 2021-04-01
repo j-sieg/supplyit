@@ -4,7 +4,7 @@ import { Modal } from 'bootstrap'
 export default class extends Controller {
   static targets = ['body', 'submitForm', 'errorMessage']
 
-  connect() {
+  initialize() {
     this.modal = new Modal(this.element)
     if(this.hasSubmitFormTarget) {
       this.submitFormTarget.addEventListener('turbo:submit-end', this.handleSubmit.bind(this))
@@ -12,10 +12,12 @@ export default class extends Controller {
   }
 
   handleSubmit({ detail }) {
+    // assume a success
+    this.errorMessageTarget.classList.add('d-none')
+    this.bodyTarget.classList.remove('failed__submit')
     const pureElement = this.element
+
     if (detail.success) {
-      this.errorMessageTarget.classList.add('d-none')
-      this.bodyTarget.classList.remove('failed__submit')
       this.modal.hide()
     } else {
       this.errorMessageTarget.classList.remove('d-none')
