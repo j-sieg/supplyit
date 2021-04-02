@@ -1,5 +1,4 @@
-<article id="product_<%= product.id %>" data-controller="addable" data-addable-added-class="added"
-  data-addable-failed-class="added-failed"
+<article id="product_<%= product.id %>"
   class="product col-5 col-sm-4 col-lg-3 p-2 rounded m-2 mt-3 shadow<%if @added %> added<% end %>">
 
   <%= link_to sellers_product_path(product) do %>
