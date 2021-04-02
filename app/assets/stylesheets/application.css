@@ -23,7 +23,7 @@ main {
 
 .turbo-progress-bar {
   height: 5px;
-  background-color: black;
+  background-color: hotpink;
 }
 
 ::-webkit-scrollbar {
