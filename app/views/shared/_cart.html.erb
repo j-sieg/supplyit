@@ -1,15 +1,15 @@
 <details id='current-cart-details' data-controller='cart-details'
-  class="table-responsive w-100 bg-white">
-  <summary class='fw-bolder p-2 border-bottom border-2 border-dark'
+  class="table-responsive w-100" data-cart-details-open-class="open">
+  <summary class='fw-bolder p-2 bg-dark text-white'
     data-action='click->cart-details#toggle'>
     Cart total: <%= price_format(cart.total_price) %>
   </summary>
 
   <% if cart.line_items.length != 0 && !@ordering %>
-    <section class='d-flex justify-content-between p-3'>
+    <section id='cart-actions' class='d-flex justify-content-between p-3'>
       <button
         type="button"
-        class="border-0 bg-white text-decoration-underline"
+        class="border-0 text-decoration-underline"
         data-bs-toggle="modal" data-bs-target="#sharedModal">
         Empty cart
       </button>
@@ -41,7 +41,7 @@
               params: { ordering: true } %>
             <% else %>
             <%= button_to 'remove', line_item_path(item), method: :delete,
-              class: 'btn btn-sm border-0 text-decoration-underline' %>
+              class: 'btn btn-sm btn-dark border-0' %>
           <% end %>
         </td>
       </tr>
