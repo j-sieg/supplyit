@@ -28,7 +28,7 @@
     </thead>
     <tbody>
       <% cart.line_items.order(:created_at).each do |item| %>
-      <tr class="<% if @new_item&.id == item.id %>added<% end %>">
+      <tr id="item_<%= item.id %>" class="<% if @new_item&.id == item.id %>added<% end %>">
         <td>
           <%= link_to "#{item.product.name}", product_url(item.product) %>
         </td>
