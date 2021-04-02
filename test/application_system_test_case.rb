@@ -30,20 +30,25 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   end
 
   def assert_line_item(line_item)
-    dom_id = "item_#{line_item.id}"
-    assert_selector 'tr', id: dom_id
+    line_item_id = dom_id(line_item)
+    assert_selector 'tr', id: line_item_id
 
-    within "##{dom_id}" do
+    within "##{line_item_id}" do
       assert_selector 'td', text: line_item.product.name
       assert_selector 'td', text: line_item.price
       assert_selector 'td', text: line_item.quantity
     end
   end
 
+  def assert_no_line_item(line_item)
+    assert_no_selector 'tr', id: dom_id(line_item)
+  end
+
   def assert_order_item(order)
-    dom_id = "order_#{order.id}"
-    assert_selector 'tr', id: dom_id
-    within "##{dom_id}" do
+    order_item_id = dom_id(order)
+    assert_selector 'tr', id: order_item_id
+
+    within "##{order_item_id}" do
       assert_selector 'td', text: "Order##{order.id}"
       assert_selector 'td', text: formatted_time(order.created_at)
       assert_selector 'td', text: order.status

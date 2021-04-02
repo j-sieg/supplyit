@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class UserCheckout < ApplicationSystemTestCase
+class User::CheckoutTest < ApplicationSystemTestCase
   setup do
     @user = users(:dane)
   end

@@ -14,7 +14,7 @@
       </thead>
       <tbody>
         <% orders.each do |order| %>
-          <tr id="order_<%= order.id %>">
+          <tr id="<%= dom_id(order) %>">
             <td><%= link_to "Order##{order.id}", order_path(order) %></td>
             <td><%= formatted_time(order.created_at) %></td>
             <td><%= order.status %></td>
