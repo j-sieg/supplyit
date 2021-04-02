@@ -12,7 +12,7 @@ class Sellers::ProductsTest < ApplicationSystemTestCase
       product_article = "article#product_#{product.id}"
       assert_selector product_article
       within product_article do
-        assert_selector "h5.card-title", text: product.name
+        assert_selector "a[href='#{sellers_product_path(product)}']", text: product.name
       end
     end
   end
@@ -21,10 +21,10 @@ class Sellers::ProductsTest < ApplicationSystemTestCase
     product = @seller.products.first
     product_article = "article#product_#{product.id}"
     within product_article do
-      click_link "Detail"
+      click_link product.name
     end
 
-    assert_selector "h1", text: "#{product.name} in detail"
+    assert_selector "h5", text: product.name
     assert_selector "li.list-group-item", text: "Price: ₱#{product.price}"
     assert_selector "li.list-group-item", text: "Location: #{product.location}"
     product.categories.each do |category|
@@ -63,17 +63,17 @@ class Sellers::ProductsTest < ApplicationSystemTestCase
       end
     end
 
-    assert_selector 'h1', text: 'New Product in detail'
+    assert_selector 'h5.card-title', text: 'New Product'
   end
 
   test "updating a product" do
     product = @seller.products.first
     product_article = "article#product_#{product.id}"
     within product_article do
-      click_link "Detail"
+      click_link product.name
     end
 
-    assert_selector "h1", text: "#{product.name} in detail"
+    assert_selector "h5", text: product.name
     click_link "Edit #{product.name}"
 
     assert_selector "h1", text: "Editing #{product.name}"
@@ -92,11 +92,11 @@ class Sellers::ProductsTest < ApplicationSystemTestCase
       end
     end
 
-    assert_selector "h1", text: "Updated Product in detail"
+    assert_selector "h5", text: "Updated Product"
     assert_selector "li.list-group-item", text: "Price: ₱698.95"
     assert_selector "li.list-group-item", text: "Location: 20km away from you"
-    assert_selector 'button', text: Category.first.name
-    assert_selector 'button', text: Category.last.name
+    assert_selector "button", text: Category.first.name
+    assert_selector "button", text: Category.last.name
   end
 
   test "deleting a product" do
@@ -106,7 +106,7 @@ class Sellers::ProductsTest < ApplicationSystemTestCase
     assert_selector product_article
 
     within product_article do
-      click_link "Detail"
+      click_link product.name
     end
 
     accept_alert { click_button "Delete this product" }

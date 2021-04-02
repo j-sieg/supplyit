@@ -1,5 +1,5 @@
 <h1 class="text-center mt-4"> Your products that are currently on the market </h1>
-<section class="row justify-content-center">
+<section id="products" class="row justify-content-center">
   <% products.each do |product| %>
     <%= render product, product: product %>
   <% end %>
