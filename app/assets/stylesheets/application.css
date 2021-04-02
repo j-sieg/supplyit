@@ -21,6 +21,11 @@ main {
   height: 90%;
 }
 
+.turbo-progress-bar {
+  height: 5px;
+  background-color: black;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
