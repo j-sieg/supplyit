@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :products
   end
 
+  get '/store', to: 'store#index'
   get '/checkout', to: 'orders#new'
 
   resources :carts, only: %i[destroy]

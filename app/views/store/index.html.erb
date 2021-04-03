@@ -1,0 +1,19 @@
+<%= content_for :title do %> | Products <% end %>
+<%= render 'shared/alert' %>
+
+<div class="row justify-content-center h-100">
+  <section id="cart-container" data-cart-opened="true"
+    class="col-md-4 sticky-top d-flex scrollable">
+    <%= render 'shared/cart', cart: @current_cart %>
+  </section>
+
+  <%= turbo_frame_tag 'products#index', src: products_path,
+    class:"scrollable col-md-8 m-0 h-100" do %>
+    <div class="mt-4 d-flex justify-content-center align-items-end">
+      <div class="spinner-grow" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <h2 class="pb-0 mb-0">&nbsp; Fetching the products...</h2>
+    </div>
+  <% end %>
+</div>

@@ -1,37 +1,27 @@
-<%= content_for :title do %> | Products <% end %>
-<%= render 'shared/alert' %>
-
-<div class="row justify-content-center h-100">
-  <section id="cart-container" data-cart-opened="true"
-    class="col-md-4 sticky-top d-flex scrollable">
-    <%= render 'shared/cart', cart: @current_cart %>
+<turbo-frame id="products#index">
+  <section id="select-search" class="col-md-6 mx-auto mt-3">
+    <%= form_with(url: products_path, method: :get) do |form| %>
+      <div class="d-flex align-items-end">
+        <%= form.collection_select :category, Category.all, :name, :capitalized_name,
+          {include_blank: true, selected: params[:category]}, class: "form-select" %>
+        <%= form.submit 'Filter' , class: "btn btn-dark ms-2", name: nil %>
+        <% if params[:category].present? %>
+          <%= link_to 'Clear', products_path, class: "btn btn-dark ms-2" %>
+        <% end %>
+      </div>
+    <% end %>
   </section>
-
-  <section class="scrollable col-md-8 m-0 h-100">
-    <div class="col-md-6 mx-auto mt-3">
-      <%= form_with(url: products_path, method: :get) do |form| %>
-        <div class="d-flex align-items-end">
-          <%= form.collection_select :category, Category.all, :name, :capitalized_name,
-            {include_blank: true, selected: params[:category]}, class: "form-select" %>
-          <%= form.submit 'Filter' , class: "btn btn-dark ms-2", name: nil %>
-          <% if params[:category].present? %>
-            <%= link_to 'Clear', products_path, class: "btn btn-dark ms-2" %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <div id="products" class="row justify-content-center">
-      <% if products.present? %>
-        <% cache products do %>
-          <% products.each do |product| %>
-            <% cache product do %>
-              <%= render 'products/product', product: product %>
-            <% end %>
+  <section id="products" class="row justify-content-center">
+    <% if products.present? %>
+      <% cache products do %>
+        <% products.each do |product| %>
+          <% cache product do %>
+            <%= render 'products/product', product: product %>
           <% end %>
         <% end %>
-      <% else %>
-        <h5 class="mt-4 text-center"> <%= no_products_message %> </h5>
       <% end %>
-    </div>
+    <% else %>
+      <h5 class="mt-4 text-center"> <%= no_products_message %> </h5>
+    <% end %>
   </section>
-</div>
+</turbo-frame>

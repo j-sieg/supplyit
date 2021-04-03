@@ -2,7 +2,7 @@
   data-addable-failed-class="added-failed"
   class="product card col-5 col-sm-4 col-lg-3 p-2 rounded m-2 mt-3 shadow-sm<%if @added %> added<% end %>">
 
-  <%= link_to product_path(product) do %>
+  <%= link_to product_path(product), target: '_top' do %>
     <% if product.images.attached? %>
       <%= image_tag product.images.first, class: "card-img-top" %>
     <% else %>
@@ -12,7 +12,7 @@
 
   <ul class="list-group mt-auto pt-2">
     <li class="list-group-item border-0 pt-1 text-break">
-      <%= link_to "#{product.name}", product_path(product), class: 'fs-3 fw-bolder' %>
+      <%= link_to "#{product.name}", product_path(product), class: 'fs-3 fw-bolder', target: "_top" %>
     </li>
     <li class="list-group-item border-0 pt-1">
       <%= number_to_currency(product.price, unit: "₱", precision: 2) %>
