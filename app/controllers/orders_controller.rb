@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   before_action :ensure_cart_is_loaded, only: %i[new create]
 
   def index
-    render locals: { orders: current_user.orders }
+    render locals: { orders: current_user.orders.includes(line_items: :product) }
   end
 
   def new
