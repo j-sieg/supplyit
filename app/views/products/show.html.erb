@@ -40,8 +40,17 @@
         </p>
 
         <p class="card-text">
-          <%= button_to 'add to cart', line_items_path, class: "btn btn-sm btn-add-to-cart fw-bolder",
-            params: { product_id: product.id }, form: { 'data-addable-target': 'addButton' } %>
+          <%= button_to 'add to cart',
+            line_items_path,
+            class: "btn btn-sm btn-add-to-cart fw-bolder",
+            params: { product_id: product.id },
+            form: {
+              data: {
+                action: 'turbo:submit-start->addable#progress turbo:submit-end->addable#add'
+              },
+              class: 'd-flex align-items-end'
+            },
+            data: { 'addable-target': 'addButton' } %>
         </p>
         <%= link_to 'Back to products', products_path %>
       </div>

@@ -5,21 +5,31 @@ export default class extends Controller {
   static classes = ['added', 'failed']
 
   initialize() {
-    this.addButtonTarget.addEventListener('turbo:submit-end', this.add.bind(this))
+    this.pureElement = this.element
   }
 
   add(event) {
-    const pureElement = this.element
     if (event.detail.success) {
       this.element.classList.remove(this.failedClass)
       this.element.classList.add(this.addedClass)
     } else {
       this.element.classList.add(this.failedClass)
     }
-    this.element.parentNode.replaceChild(this.element, pureElement)
+
+    // remove the growing spinner and enable the add to cart button
+    this.addButtonTarget.nextElementSibling.remove()
+    this.addButtonTarget.removeAttribute('disabled')
+
+    this.element.parentNode.replaceChild(this.element, this.pureElement)
   }
 
-  disconnect() {
-    this.addButtonTarget.removeEventListener('turbo:submit-end', this.add.bind(this))
+  progress(event) {
+    this.addButtonTarget.insertAdjacentHTML("afterend", `
+      <div class="spinner-grow ms-2" role="status">
+        <span class="visually-hidden"> Adding... </span>
+      </div>
+    `)
+    this.addButtonTarget.setAttribute('disabled', true)
   }
+
 }

@@ -21,8 +21,17 @@
       Location: <%= product.location %>
     </li>
     <li class="list-group-item border-0 pt-1 d-flex justify-content-center">
-      <%= button_to 'add to cart', line_items_path, class: "btn btn-sm btn-add-to-cart fw-bolder",
-        params: { product_id: product.id }, form: { 'data-addable-target': 'addButton' } %>
+      <%= button_to 'add to cart',
+        line_items_path,
+        class: "btn btn-sm btn-add-to-cart fw-bolder",
+        params: { product_id: product.id },
+        form: {
+          data: {
+            action: 'turbo:submit-start->addable#progress turbo:submit-end->addable#add'
+          },
+          class: 'd-flex align-items-end'
+        },
+        data: { 'addable-target': 'addButton' } %>
     </li>
   </ul>
 </article>
