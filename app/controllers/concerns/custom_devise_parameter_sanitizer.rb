@@ -5,7 +5,7 @@ module CustomDeviseParameterSanitizer
     protected
       def devise_parameter_sanitizer
         if resource_class.eql?(User)
-          UserParameterSanitizer.new(User, :user, params)
+          User::ParameterSanitizer.new(User, :user, params)
         else
           super
         end

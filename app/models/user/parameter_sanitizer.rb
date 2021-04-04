@@ -1,4 +1,4 @@
-class UserParameterSanitizer < Devise::ParameterSanitizer
+class User::ParameterSanitizer < Devise::ParameterSanitizer
   def initialize(*)
     super
     permit(:sign_up, keys: [:full_name, :phone_number, :address, :birthday])
