@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   include CurrentCart
 
+  skip_before_action :set_current_cart, only: %i[index]
   before_action :set_order, only: %i[show]
   before_action :ensure_cart_is_loaded, only: %i[new create]
 
