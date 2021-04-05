@@ -50,4 +50,17 @@ class CartTest < ApplicationSystemTestCase
     end
   end
 
+  test "adding a item from an unavailable product" do
+    visit store_url
+    product = Product.available.first
+    product.update(available: false)
+
+    within "##{dom_id(product)}" do
+      assert_no_difference 'LineItem.count' do
+        click_on "add to cart"
+      end
+      assert_text "Not available anymore"
+    end
+  end
+
 end

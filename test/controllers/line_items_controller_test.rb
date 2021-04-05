@@ -58,9 +58,11 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "can only add line items of available products" do
-    assert_raise ActiveRecord::RecordNotFound do
-      post line_items_url, params: { product_id: products(:unavailable_product_from_walt) }
+    assert_no_difference 'LineItem.count' do
+      post line_items_url, params: { product_id: products(:unavailable_product_from_walt).id }
     end
+
+    assert_redirected_to store_url
   end
 
 end
