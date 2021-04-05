@@ -54,6 +54,7 @@ class Sellers::ProductsTest < ApplicationSystemTestCase
 
       select Category.first.name, from: "product_category_ids"
       select Category.last.name, from: "product_category_ids"
+      uncheck "product_available"
 
       fill_in "Price", with: "999"
       fill_in "Location", with: "5km away from you"
@@ -83,6 +84,7 @@ class Sellers::ProductsTest < ApplicationSystemTestCase
 
       select Category.first.name, from: "product_category_ids"
       select Category.last.name, from: "product_category_ids"
+      uncheck "product_available"
 
       fill_in "Price", with: "698.95"
       fill_in "Location", with: "20km away from you"

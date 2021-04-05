@@ -57,4 +57,12 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     assert_equal line_items.first.quantity, 1
   end
 
+  test "can only add line items of available products" do
+    assert_no_difference 'LineItem.count' do
+      post line_items_url, params: { product_id: products(:unavailable_product_from_walt).id }
+    end
+
+    assert_redirected_to store_url
+  end
+
 end

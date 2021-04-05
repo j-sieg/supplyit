@@ -22,6 +22,11 @@
             <%= link_to "Back to my products", sellers_products_path, class: "mt-2 col-lg-4" %>
           </div>
           <ul class="list-group">
+            <li class="list-group-item fw-bolder"> Currently
+              <span class="<%= product.available? ? 'text-success' : 'text-danger' %>">
+                <%= available_message(product) %>
+              </span>
+            </li>
             <li class="list-group-item"> Location:
               <span class="fw-bolder"><%= product.location %></span>
             </li>

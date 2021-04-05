@@ -12,10 +12,14 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     }
   end
 
-  test "should get index and set a cart from session" do
+  test "index should only display available products" do
     get products_url
     assert_response :success
     assert_not_nil session[:cart_id]
+
+    Product.available.each { |product| assert_select "article##{dom_id(product)}" }
+
+    Product.unavailable.each { |product| assert_select "article##{dom_id(product)}", false }
   end
 
   test "should show product" do

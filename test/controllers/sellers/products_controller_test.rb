@@ -10,8 +10,7 @@ class Sellers::ProductsControllerTest < ActionDispatch::IntegrationTest
     @product_params = {
       location: @product.location,
       name: @product.name,
-      price: @product.price,
-      category_ids: [@added_category.id]
+      price: @product.price
     }
 
     @other_product = products(:cement)
@@ -24,10 +23,12 @@ class Sellers::ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create product" do
     assert_difference ['Product.count', '@seller.products.count'] do
-      post sellers_products_url, params: { product: @product_params }
+      post sellers_products_url, params: {
+        product: @product_params.merge({ category_ids: [@added_category.id] })
+      }
     end
 
-    new_product = Product.last
+    new_product = @seller.products.find_by(@product_params)
 
     assert new_product.category_ids.include?(@added_category.id)
     assert_redirected_to sellers_product_url(new_product)
@@ -39,8 +40,12 @@ class Sellers::ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update product" do
-    patch sellers_product_url(@product), params: { product: @product_params.merge({ category_ids: []}) }
+    patch sellers_product_url(@product), params: {
+      product: @product_params.merge({ available: false, category_ids: [] })
+    }
 
+    @product.reload
+    assert_not @product.available
     assert_equal @product.category_ids, []
     assert_redirected_to sellers_product_url(@product)
   end

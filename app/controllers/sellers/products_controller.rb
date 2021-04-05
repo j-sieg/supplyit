@@ -53,7 +53,7 @@ module Sellers
 
       # Only allow a list of trusted parameters through.
       def product_params
-        params.require(:product).permit(:name, :price, :location, category_ids: [], images: [])
+        params.require(:product).permit(:name, :price, :location, :available, category_ids: [], images: [])
       end
   end
 end

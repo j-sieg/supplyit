@@ -18,6 +18,11 @@
     <%= form.collection_select :category_ids, Category.all, :id, :name, {include_blank: true}, multiple: true, class: "form-select" %>
   </div>
 
+  <div class="mb-3 form-check">
+    <%= form.check_box :available, class: "form-check-input" %>
+    <%= form.label :available, class: "form-check-label" %>
+  </div>
+
   <div class="mb-3">
     <%= form.label :price, class: "form-label" %>
     <%= form.number_field :price, class: "form-control" %>

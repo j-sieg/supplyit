@@ -54,7 +54,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   test "cannot create an order when cart is empty" do
     login_as(users(:dane), scope: :user)
     post orders_url
-    assert_redirected_to products_url
+    assert_redirected_to store_url
     assert_not_nil flash[:notice]
   end
 

@@ -6,7 +6,7 @@ class CartTest < ApplicationSystemTestCase
     @user = users(:dane)
     user_login_as(@user)
 
-    Product.limit(3).order('RANDOM()').each do |product|
+    Product.available.limit(3).order('RANDOM()').each do |product|
       within "##{dom_id(product)}" do
         assert_difference('LineItem.count') do
           2.times { click_on 'add to cart' }
@@ -47,6 +47,19 @@ class CartTest < ApplicationSystemTestCase
 
     assert_difference 'Cart.count', -1 do
       click_on "Empty my cart"
+    end
+  end
+
+  test "adding a item from an unavailable product" do
+    visit store_url
+    product = Product.available.first
+    product.update(available: false)
+
+    within "##{dom_id(product)}" do
+      assert_no_difference 'LineItem.count' do
+        click_on "add to cart"
+      end
+      assert_text "Not available anymore"
     end
   end
 
