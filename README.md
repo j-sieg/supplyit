@@ -1,9 +1,11 @@
 # README
 
 ## Setup Instructions
-*Before anything else **you must have ruby version 2.7.1 and yarn** installed.* Then run:
+*Before anything else **you must have ruby version 2.7.1 and yarn** installed.* Then:
 ```bash
+cd supplyit
 bundle install
+yarn install --check-files
 ```
 
 ### Database Setup
