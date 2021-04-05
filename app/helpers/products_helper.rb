@@ -6,4 +6,8 @@ module ProductsHelper
       "There are no products"
     end
   end
+
+  def available_message(product)
+    product.available ? "Available" : "Unavailable"
+  end
 end

@@ -39,8 +39,12 @@ class Sellers::ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update product" do
-    patch sellers_product_url(@product), params: { product: @product_params.merge({ category_ids: []}) }
+    patch sellers_product_url(@product), params: {
+      product: @product_params.merge({ available: false, category_ids: [] })
+    }
 
+    @product.reload
+    assert_not @product.available
     assert_equal @product.category_ids, []
     assert_redirected_to sellers_product_url(@product)
   end

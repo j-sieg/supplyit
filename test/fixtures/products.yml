@@ -1,6 +1,7 @@
 DEFAULTS: &DEFAULTS
   name: $LABEL
   location: <%= Faker::TvShows::Simpsons.location %>
+  available: true
 
 aggregate:
   <<: *DEFAULTS
