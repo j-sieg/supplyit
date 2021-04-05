@@ -6,9 +6,9 @@ class ProductsController < ApplicationController
   def index
     products = case params[:category]
     in "" | nil
-      Product.all.with_attached_images
+      Product.available.with_attached_images
     in String => category
-      Category.find_by(name: category)&.products&.with_attached_images
+      Category.find_by(name: category)&.products&.available&.with_attached_images
     end
 
     render locals: { products: products, cart: @current_cart }
@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.available.find(params[:id])
     end
 
 end

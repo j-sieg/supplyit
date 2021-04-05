@@ -4,7 +4,7 @@ class LineItemsController < ApplicationController
   before_action :set_ordering
 
   def create
-    product = Product.find(params[:product_id])
+    product = Product.available.find(params[:product_id])
     @new_item = @current_cart.add_item(product)
 
     respond_to do |format|

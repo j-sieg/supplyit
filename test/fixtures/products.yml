@@ -22,3 +22,9 @@ destroyable_product_from_walt:
   <<: *DEFAULTS
   seller: heisenberg
   price: 59.95
+
+unavailable_product_from_walt:
+  <<: *DEFAULTS
+  seller: heisenberg
+  price: 100.00
+  available: false

@@ -6,7 +6,7 @@ class CartTest < ApplicationSystemTestCase
     @user = users(:dane)
     user_login_as(@user)
 
-    Product.limit(3).order('RANDOM()').each do |product|
+    Product.available.limit(3).order('RANDOM()').each do |product|
       within "##{dom_id(product)}" do
         assert_difference('LineItem.count') do
           2.times { click_on 'add to cart' }

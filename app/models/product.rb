@@ -7,6 +7,11 @@ class Product < ApplicationRecord
   has_many :line_items
   has_many_attached :images
 
+  default_scope { order(updated_at: :desc) }
+
+  scope :available,   -> { where(available: true) }
+  scope :unavailable, -> { where(available: false) }
+
   before_destroy :ensure_not_referenced_by_line_items
 
   validates :images, content_type: {
