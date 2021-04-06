@@ -22,14 +22,14 @@ class Product < ApplicationRecord
   def self.search(params = { category: nil, name: nil })
     case params
     in { category: String => category, name: "" | nil }
-      Category.find_by(name: category)&.products&.available&.with_attached_images
+      Category.find_by(name: category)&.products&.with_attached_images
     in { name: String => name, category: "" | nil }
-      Product.available.where('name ILIKE ?', "%#{name}%").with_attached_images
+      Product.where('name ILIKE ?', "%#{name}%").with_attached_images
     in { category: String => category, name: String => name }
       Category.find_by(name: category)\
-        &.products&.available&.where('name ILIKE ?', "%#{name}%")&.with_attached_images
+        &.products&.where('name ILIKE ?', "%#{name}%")&.with_attached_images
     else
-      Product.available.with_attached_images
+      Product.with_attached_images
     end
   end
 
