@@ -17,7 +17,7 @@ class Sellers::SessionsTest < ApplicationSystemTestCase
       click_on "Sign up"
     end
 
-    find 'h1', text: 'Your products that are currently on the market'
+    find 'h1', text: 'All your products'
     find 'h3', text: 'You have none'
   end
 

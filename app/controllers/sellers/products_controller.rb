@@ -3,7 +3,9 @@ module Sellers
     before_action :set_product, except: %i[index new create]
 
     def index
-      render locals: { products: current_seller.products.with_attached_images }
+      search_params = { category: params[:category], name: params[:name] }
+      products = current_seller.products.search(search_params)
+      render locals: { products: products }
     end
 
     def show

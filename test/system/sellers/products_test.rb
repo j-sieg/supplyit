@@ -7,7 +7,7 @@ class Sellers::ProductsTest < ApplicationSystemTestCase
   end
 
   test "shows all products of the seller" do
-    find "h1", text: "Your products that are currently on the market"
+    find "h1", text: "All your products"
     @seller.products.each do |product|
       product_article = "article#product_#{product.id}"
       assert_selector product_article
@@ -15,6 +15,22 @@ class Sellers::ProductsTest < ApplicationSystemTestCase
         assert_selector "a[href='#{sellers_product_path(product)}']", text: product.name
       end
     end
+  end
+
+  test "searching for a product by name and category" do
+    product = products(:aggregate)
+    within "#search-form" do
+      fill_in "name", with: product.name
+      select product.categories.first.name.capitalize, from: :category
+
+      click_on "Search"
+    end
+
+    @seller.products.where.not(id: product.id).each do |prod|
+      assert_no_selector "article##{dom_id(prod)}"
+    end
+
+    assert_selector "article##{dom_id(product)}"
   end
 
   test "looking at a product in detail" do
