@@ -19,6 +19,20 @@ class Product < ApplicationRecord
     message: 'Images should only be a PNG, JPG or JPEG'
   }
 
+  def self.search(params = { category: nil, name: nil })
+    case params
+    in { category: String => category, name: "" | nil }
+      Category.find_by(name: category)&.products&.available&.with_attached_images
+    in { name: String => name, category: "" | nil }
+      Product.available.where('name ILIKE ?', "%#{name}%").with_attached_images
+    in { category: String => category, name: String => name }
+      Category.find_by(name: category)\
+        &.products&.available&.where('name ILIKE ?', "%#{name}%")&.with_attached_images
+    else
+      Product.available.with_attached_images
+    end
+  end
+
   def sold_count
     # count all line items in existence
     LineItem.where(product_id: id)

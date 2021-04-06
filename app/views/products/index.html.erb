@@ -1,14 +1,23 @@
 <turbo-frame id="products#index">
-  <section id="select-search" class="col-md-6 mx-auto mt-3">
-    <%= form_with(url: products_path, method: :get) do |form| %>
-      <div class="d-flex align-items-end">
+  <section id="select-search" class="col-md-9 mx-auto p-2">
+    <%= form_with(url: products_path, method: :get, id: "search-form", class: "d-flex justify-content-center align-items-end") do |form| %>
+      <div class="w-50">
+        <%= form.label "Product name", class: "form-label" %>
+        <%= form.search_field :name, class: "form-control", value: params[:name] %>
+      </div>
+      <div class="w-25 ms-2">
+        <%= form.label :category, class: "fw-bolder fs-4", class: "form-label" %>
         <%= form.collection_select :category, Category.all, :name, :capitalized_name,
           {include_blank: true, selected: params[:category]}, class: "form-select" %>
-        <%= form.submit 'Filter' , class: "btn btn-dark ms-2", name: nil %>
-        <% if params[:category].present? %>
-          <%= link_to 'Clear', products_path, class: "btn btn-dark ms-2" %>
-        <% end %>
       </div>
+
+      <div class="ms-2 d-flex">
+        <%= form.submit 'Search' , class: "btn btn-dark", name: nil %>
+        <%= link_to 'Clear', products_path, class: "btn btn-dark ms-2" if search_terms? %>
+      </div>
+    <% end %>
+    <% if search_terms? %>
+      <p class="ms-2 mt-2"> Search results for <%= search_results_for %> </p>
     <% end %>
   </section>
   <section id="products" class="row justify-content-center">
@@ -21,7 +30,7 @@
         <% end %>
       <% end %>
     <% else %>
-      <h5 class="mt-4 text-center"> <%= no_products_message %> </h5>
+      <h5 class="mt-4 text-center">There are no products...</h5>
     <% end %>
   </section>
 </turbo-frame>
