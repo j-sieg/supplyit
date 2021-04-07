@@ -1,5 +1,7 @@
-<section id="select-search" class="col-md-9 mx-auto p-2">
-  <%= form_with(url: search_path, method: :get, id: "search-form", class: "d-flex justify-content-center align-items-end") do |form| %>
+<section id="select-search" class="col-md-9 mx-auto p-2 d-flex flex-column justify-content-center"
+  data-controller="search">
+  <%= form_with(url: search_path, method: :get, id: "search-form", class: "d-flex justify-content-center align-items-end",
+    data: { action: 'submit->search#busy'}) do |form| %>
     <div class="w-50">
       <%= form.label "Product name", class: "form-label" %>
       <%= form.search_field :name, class: "form-control", value: params[:name] %>
@@ -18,4 +20,8 @@
   <% if search_terms? %>
     <p class="ms-2 mt-2"> Search results for <%= search_results_for %> </p>
   <% end %>
+
+  <div class="spinner-grow mx-auto mt-4 d-none" role="status" data-search-target="spinner">
+    <span class="visually-hidden"> Adding... </span>
+  </div>
 </section>
