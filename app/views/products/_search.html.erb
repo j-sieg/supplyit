@@ -14,7 +14,8 @@
 
     <div class="ms-2 d-flex">
       <%= form.submit 'Search' , class: "btn btn-dark", name: nil %>
-      <%= link_to 'Clear', search_path, class: "btn btn-dark ms-2" if search_terms? %>
+      <%= link_to 'Clear', search_path, class: "btn btn-dark ms-2",
+        data: { action: 'click->search#busy' } if search_terms? %>
     </div>
   <% end %>
   <% if search_terms? %>
