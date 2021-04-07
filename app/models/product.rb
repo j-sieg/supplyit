@@ -21,6 +21,8 @@ class Product < ApplicationRecord
 
   def self.search(params = { category: nil, name: nil })
     case params
+    in { category: "" | nil, name: "" | nil }
+      Product.with_attached_images
     in { category: String => category, name: "" | nil }
       Category.find_by(name: category)&.products&.with_attached_images
     in { name: String => name, category: "" | nil }
