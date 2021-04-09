@@ -15,7 +15,11 @@ module CurrentCart
   end
 
   def set_current_cart
-    return @current_cart = current_user.cart if current_user&.cart
+    if current_user&.cart
+      @current_cart = current_user.cart
+      session.delete(:cart_id)
+      return
+    end
 
     set_cart
 

@@ -46,6 +46,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     login_as(user, scope: :user)
 
     get products_url
+    assert_nil session[:cart_id]
     assert_not_equal user.cart.id, cart_id
   end
 
