@@ -4,7 +4,7 @@ module Sellers
 
     def index
       search_params = { category: params[:category], name: params[:name] }
-      products = current_seller.products.search(search_params)
+      products = Product.search(search_params).where(seller: current_seller)
       render locals: { products: products }
     end
 
