@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products
   def index
     search_params = { category: params[:category], name: params[:name] }
-    products = Product.available.search(search_params)
+    products = Product.search(search_params).available
     render locals: { products: products, cart: @current_cart }
   end
 
