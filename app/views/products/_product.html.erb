@@ -12,7 +12,7 @@
 
   <ul class="list-group mt-auto pt-2">
     <li class="list-group-item border-0 pt-1 text-break">
-      <%= link_to "#{product.name}", product_path(product), class: 'fs-3 fw-bolder', target: "_top" %>
+      <%= link_to "#{product.name}", product_path(product), class: 'fs-5 fw-bolder', target: "_top" %>
     </li>
     <li class="list-group-item border-0 pt-1">
       <%= number_to_currency(product.price, unit: "₱", precision: 2) %>
