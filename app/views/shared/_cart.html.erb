@@ -5,7 +5,7 @@
     Cart total: <%= price_format(cart.total_price) %>
   </summary>
 
-  <% if cart.line_items.length != 0 && !@ordering %>
+  <% if cart.loaded? && !@ordering %>
     <section id='cart-actions' class='d-flex justify-content-between p-3'>
       <button
         type="button"
@@ -50,7 +50,7 @@
   </table>
 
   <%= content_for :modal_body do %>
-    <% if !@ordering %>
+    <% unless @ordering %>
       <h5> Are you sure you don't just want to remove stuff? </h5>
       <div class="d-flex justify-content-around">
         <%= button_to 'Empty my cart', cart_path(@current_cart),
@@ -59,15 +59,6 @@
       </div>
       <p class="d-none text-danger text-center fw-bolder mb-0 pb-0 mt-2"
       data-modal-target="errorMessage">Failed to empty the cart...</p>
-    <% else %>
-      <h5 class='text-center mb-4'> Last chance to back out... </h5>
-      <div class="d-flex justify-content-around">
-        <%= button_to 'Confirm order', { action: "create" },
-        form: { data: { 'modal-target': 'submitForm' } } %>
-        <button data-bs-dismiss="modal">Take me back!</button>
-      </div>
-      <p class="d-none text-danger text-center fw-bolder mb-0 pb-0 mt-2"
-      data-modal-target="errorMessage">Failed to confirm your order...</p>
     <% end %>
   <% end %>
 </details>

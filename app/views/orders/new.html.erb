@@ -12,13 +12,32 @@
     <%= render 'shared/cart', cart: cart %>
   </section>
 
-  <section class="row justify-content-center border-top border-3 border-dark">
-    <h2 class="mt-3 text-center"> Payment method </h2>
-    <button
-      type="button" data-bs-toggle="modal"
-      data-bs-target="#sharedModal" style="max-width: min-content;">
-      Pay
-    </button>
+  <section class="row">
+    <h2 class="mt-3"> Payment method </h2>
+
+    <%= form_with(model: @order, url: orders_path,id: 'checkout-form') do |form| %>
+      <div>
+        <%= form.label :pay_type, class: "form-label" %>
+        <%= form.select :pay_type, Order.pay_types.map { |k, _| [k, k] }, class: "form-select" %>
+      </div>
+
+      <button
+        type="button" data-bs-toggle="modal"
+        data-bs-target="#sharedModal" style="max-width: min-content;">
+        Pay
+      </button>
+    <% end %>
+
+    <%= content_for :modal_body do %>
+      <h5 class='text-center mb-4'> Last chance to back out... </h5>
+      <div class="d-flex justify-content-around">
+        <button type='submit' form='checkout-form'>Confirm order</button>
+        <button data-bs-dismiss="modal">Take me back!</button>
+      </div>
+      <p class="d-none text-danger text-center fw-bolder mb-0 pb-0 mt-2"
+        data-modal-target="errorMessage">Failed to confirm your order...</p>
+    <% end %>
+
   </section>
 </article>
 

@@ -47,7 +47,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     user = users(:darwin)
     login_as(user, scope: :user)
     assert_difference ['user.orders.count', 'Order.count'] do
-      post orders_url
+      post orders_url, params: { order: {pay_type: Order.pay_types.keys.last } }
     end
   end
 

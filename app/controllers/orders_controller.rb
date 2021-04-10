@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
 
   def new
     @ordering = true
+    @order = current_user.orders.new
     render locals: { cart: @current_cart }
   end
 
@@ -20,7 +21,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = current_user.orders.new(status: Order.statuses['Processing'])
+    default_status = { status: Order.statuses['Completed']}
+    order = current_user.orders.new(order_params.merge(default_status))
     order.transfer_items_from_cart(@current_cart)
 
     if order.save!
@@ -33,6 +35,10 @@ class OrdersController < ApplicationController
   private
     def set_order
       @order = current_user.orders.find(params[:id])
+    end
+
+    def order_params
+      params.require(:order).permit(:pay_type)
     end
 
     def ensure_cart_is_loaded

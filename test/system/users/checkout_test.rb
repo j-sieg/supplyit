@@ -33,12 +33,18 @@ class User::CheckoutTest < ApplicationSystemTestCase
       click_on "Checkout"
     end
 
-    click_on "Pay"
+    within '#checkout-form' do
+      select Order.pay_types.keys.last, from: 'order_pay_type'
+      click_on "Pay"
+    end
+
     assert_difference '@user.orders.count' do
       click_on "Confirm"
     end
 
+    new_order = @user.orders.last
     assert_text "Successfully created your order"
-    assert_order_item(@user.orders.last)
+    assert_order_item(new_order)
+    assert_equal Order.pay_types.keys.last, new_order.pay_type
   end
 end
