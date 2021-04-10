@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:pay_type)
+      params.require(:order).permit(:pay_type, :address, :phone_number)
     end
 
     def ensure_cart_is_loaded

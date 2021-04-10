@@ -54,11 +54,12 @@
       <h5> Are you sure you don't just want to remove stuff? </h5>
       <div class="d-flex justify-content-around">
         <%= button_to 'Empty my cart', cart_path(@current_cart),
-          method: :delete, form: { data: { 'modal-target': 'submitForm' } } %>
-        <button data-bs-dismiss="modal">Close</button>
+          method: :delete, form: {data: {'modal-target': 'submitForm' }},
+          class: 'btn btn-danger' %>
+        <button data-bs-dismiss="modal" class="btn btn-dark">Close</button>
       </div>
       <p class="d-none text-danger text-center fw-bolder mb-0 pb-0 mt-2"
-      data-modal-target="errorMessage">Failed to empty the cart...</p>
+        data-modal-target="errorMessage">Failed to empty the cart...</p>
     <% end %>
   <% end %>
 </details>
