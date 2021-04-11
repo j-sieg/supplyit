@@ -40,7 +40,6 @@ class Product < ApplicationRecord
     LineItem.where(product_id: id)
       .joins(:order)
       .where('orders.status = ?', Order.statuses['Completed'])
-      .distinct
       .sum(:quantity)
   end
 
