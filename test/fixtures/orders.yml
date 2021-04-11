@@ -1,9 +1,9 @@
-order_completed_by_homer:
+homer_buys_from_jesse:
   user: homer
   status: <%= Order.statuses['Completed'] %>
   pay_type: <%= Order.pay_types['Credit Card'] %>
 
-order_completed_by_darwin:
+darwin_buys_from_jesse_and_heisenberg:
   user: darwin
   status: <%= Order.statuses['Completed'] %>
   pay_type: <%= Order.pay_types['Gcash'] %>

@@ -2,7 +2,7 @@ require "test_helper"
 
 class OrdersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @completed_order = orders(:order_completed_by_homer)
+    @completed_order = orders(:homer_buys_from_jesse)
     @product = products(:cement)
   end
 

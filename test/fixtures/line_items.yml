@@ -4,14 +4,21 @@
 order_item_<%= n %>_from_homer:
   product: cement
   price: 500
-  order: order_completed_by_homer
+  order: homer_buys_from_jesse
 <% end %>
 
 <% 5.times do |n| %>
-order_item_<%= n %>_from_darwin:
+aggregate_order_item_<%= n %>_from_darwin:
   product: aggregate
   price: 100
-  order: order_completed_by_darwin
+  order: darwin_buys_from_jesse_and_heisenberg
+<% end %>
+
+<% 5.times do |n| %>
+cement_order_item_<%= n %>_from_darwin:
+  product: cement
+  price: 200
+  order: darwin_buys_from_jesse_and_heisenberg
 <% end %>
 
 <% 5.times do |n| %>
