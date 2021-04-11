@@ -2,3 +2,8 @@ order_completed_by_homer:
   user: homer
   status: <%= Order.statuses['Completed'] %>
   pay_type: <%= Order.pay_types['Credit Card'] %>
+
+order_completed_by_darwin:
+  user: darwin
+  status: <%= Order.statuses['Completed'] %>
+  pay_type: <%= Order.pay_types['Gcash'] %>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :sellers do
     resources :products
+    resources :orders, only: %i[index show]
   end
 
   get '/store', to: 'store#index'

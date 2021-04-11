@@ -1,10 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 <% 10.times do |n| %>
-order_item_<%=n%>_from_homer:
+order_item_<%= n %>_from_homer:
   product: cement
   price: 500
   order: order_completed_by_homer
+<% end %>
+
+<% 5.times do |n| %>
+order_item_<%= n %>_from_darwin:
+  product: aggregate
+  price: 100
+  order: order_completed_by_darwin
 <% end %>
 
 <% 5.times do |n| %>

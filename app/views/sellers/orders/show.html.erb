@@ -1,0 +1,37 @@
+<section class="mx-auto col-md-6 table-responsive shadow-lg rounded mt-4 p-2">
+  <h1 class="text-center text-decoration-underline w-100">
+    Order #<%= order.id %> on <%= formatted_time(order.created_at) %>
+  </h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% order.line_items.each do |item| %>
+      <tr>
+        <td><%= link_to "#{item.product.name}", sellers_product_path(item.product) %></td>
+        <td><%= price_format(item.price) %></td>
+        <td> x <%= item.quantity %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class='px-2'>
+    <p class="fw-bolder"> You got a total of <%= price_format(order.total_cost) %> from this order </p>
+    <%= link_to "Back to my orders", sellers_orders_path %>
+  </div>
+
+  <article class='bg-dark text-white px-3 py-2 my-4 rounded'>
+    <h2> <%= order.user.full_name %> ordered </h2>
+    <p class='mb-0'>
+      Address: <%= order.address %> <br />
+      Contact number: <%= order.phone_number %>
+    </p>
+  </article>
+</section>
