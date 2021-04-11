@@ -7,7 +7,7 @@
       <%= form.search_field :name, class: "form-control", value: params[:name] %>
     </div>
     <div class="w-25 ms-2">
-      <%= form.label :category, class: "fw-bolder fs-4", class: "form-label" %>
+      <%= form.label :category, class: "form-label fw-bolder fs-4" %>
       <%= form.collection_select :category, Category.all, :name, :capitalized_name,
         {include_blank: true, selected: params[:category]}, class: "form-select" %>
     </div>
