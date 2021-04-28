@@ -1,6 +1,11 @@
 class Order < ApplicationRecord
   belongs_to :user
-  has_many :line_items, -> { includes :product }, dependent: :destroy
+  has_many :line_items, dependent: :destroy
+
+  scope :with_items_from, -> (seller: ) do
+    includes(:line_items)
+    .where(line_items: { product_id: seller.products })
+  end
 
   enum status: %w[Canceled Processing Completed]
   enum pay_type: {

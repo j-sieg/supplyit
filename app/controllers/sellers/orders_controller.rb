@@ -8,9 +8,8 @@ module Sellers
 
     def show
       @order =
-        Order.includes(:user, line_items: :product)
-        .where(line_items: { product_id: current_seller.products })
-        .find(params[:id])
+        Order.with_items_from(seller: current_seller)
+          .includes(:user, line_items: :product).find(params[:id])
 
       render locals: { order: @order }
     end

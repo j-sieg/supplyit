@@ -12,20 +12,14 @@ class OrderTest < ActiveSupport::TestCase
   test "#total_cost returns the sum of the items scoped to a seller" do
     jesse = sellers(:jesse)
     order = orders(:darwin_buys_from_jesse_and_heisenberg)
-    order =
-      Order.includes(:line_items)
-      .where(line_items: { product_id: jesse.products })
-      .find(order.id)
+    order = Order.with_items_from(seller: jesse).find(order.id)
 
     assert_equal 1000, order.total_cost
 
 
     heisenberg = sellers(:heisenberg)
     order = orders(:darwin_buys_from_jesse_and_heisenberg)
-    order =
-      Order.includes(:line_items)
-      .where(line_items: { product_id: heisenberg.products })
-      .find(order.id)
+    order = Order.with_items_from(seller: heisenberg).find(order.id)
 
     assert_equal 500, order.total_cost
   end
