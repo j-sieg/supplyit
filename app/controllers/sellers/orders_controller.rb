@@ -2,7 +2,7 @@ module Sellers
   class OrdersController < ApplicationController
 
     def index
-      orders = current_seller.orders
+      orders = current_seller.orders.latest
       render locals: { orders: orders }
     end
 

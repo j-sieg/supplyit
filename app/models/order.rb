@@ -7,6 +7,8 @@ class Order < ApplicationRecord
     .where(line_items: { product_id: seller.products })
   end
 
+  scope :latest, -> { order(updated_at: :desc, created_at: :desc) }
+
   enum status: %w[Canceled Processing Completed]
   enum pay_type: {
     'Credit Card': 0,
