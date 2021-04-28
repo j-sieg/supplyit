@@ -2,7 +2,7 @@ module Sellers
   class OrdersController < ApplicationController
 
     def index
-      orders = current_seller.orders.includes(:line_items).group("line_items.id")
+      orders = current_seller.orders
       render locals: { orders: orders }
     end
 
