@@ -18,7 +18,7 @@
       <%= number_to_currency(product.price, unit: "₱", precision: 2) %>
     </li>
     <li class="list-group-item border-0 pt-1">
-      Location: <%= product.location %>
+      Location: <%= truncate(product.location, length: 15) %>
     </li>
 
     <% if product.available %>
